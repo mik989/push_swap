@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef PUSH_H
+# define PUSH_H
 # include <stddef.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -20,10 +20,11 @@
 
 typedef struct s_list
 {
-	void			*content;
+	int			content;
 	struct s_list	*next;
-}			t_list;
+}t_list;
 
+void 	sa(t_list **a);
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nitems, size_t size);

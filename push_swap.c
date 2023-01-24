@@ -1,15 +1,41 @@
-#include <unistd.h>
-#include "lib/libft.h"
+#include "lib/push.h"
+
+void ft_lstdsp(t_list *lst)
+{
+        while (lst)
+        {
+          printf("%d\n", lst->content);
+          lst = lst->next;
+        }
+}
+
+t_list	*ft_lstnew1(int content)
+{
+	t_list	*lista;
+
+	lista = malloc(sizeof(t_list));
+	lista->content = content;
+	lista->next = NULL;
+	return (lista);
+}
+
+void    ft_sortlittle(t_list **lst)
+{
+    if ((*lst)->content > (*lst)->next->content)
+        sa(lst);    
+}
 
 int main (int ac, char **av)
 {
     int j;
     int i;
-    t_list **a;
-    t_list **b;
+    t_list *a;
+    t_list *b;
+    t_list *a1;
 
     a = NULL;
     b = NULL;
+    a1 = NULL;
 
     j = 1;
     i = 0;
@@ -45,17 +71,28 @@ int main (int ac, char **av)
                 }
             j++;
         }        
-        i = 1;
+        i = 1;        
         while (i < ac)
         {
-            ft_lstadd_back(a, ft_lstnew(av[i]));
+            int pippo = ft_atoi(av[i]);            
+            a1 = ft_lstnew1(pippo);
+            ft_lstadd_back(&a, a1);
             i++;
-        }
-        
+        }        
         if (ac == 2)
             return 0;
-        /*if(ac > 2)
+        if (ac == 3)
         {
-
-        }*/
+            ft_sortlittle(&a);
+            ft_lstdsp(a);            
+        }
+       /* if (ac == 4)
+            xxxx;
+        if (ac == 5)
+            xxxx;
+        if (ac == 6)
+            xxxx;
+        if (ac > 6)
+            xxxx;*/
 }
+        

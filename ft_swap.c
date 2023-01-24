@@ -11,18 +11,23 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "lib/libft.h"
+#include "lib/push.h"
 
 void swap(t_list **lst)
 {
-	t_list *tmp;
+	t_list *testa;
+	t_list *next;
+	t_list *culo;
 
 	if (!*lst || !(*lst)->next)
 		return ;
-	tmp = (*lst)->next;
-	(*lst)->next = tmp->next;
-	tmp->next = (*lst); 
-	lst = &tmp;
+	testa = (*lst)->next;
+	next = *lst;
+	culo = (*lst)->next->next;
+
+	testa->next = next;
+	next->next = culo;
+	*lst = testa;
 }
 
 void sa(t_list **a)
