@@ -1,4 +1,4 @@
-#include "lib/push.h"
+#include "include/push.h"
 
 void ft_lstdsp(t_list *lst)
 {
@@ -30,18 +30,17 @@ int main (int ac, char **av)
     int j;
     int i;
     t_list *a;
-    t_list *b;
+    //t_list *b;
     t_list *a1;
 
     a = NULL;
-    b = NULL;
+    //b = NULL;
     a1 = NULL;
 
     j = 1;
     i = 0;
         if(ac == 1)
-            return 0;
-         
+            return 0;         
         while(j < ac)
         {
             while(av[j][i] != '\0' && (j < ac - 1))

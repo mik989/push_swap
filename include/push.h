@@ -12,6 +12,9 @@
 
 #ifndef PUSH_H
 # define PUSH_H
+
+# include "./libft/libft.h"
+
 # include <stddef.h>
 # include <stdlib.h>
 # include <stdio.h>

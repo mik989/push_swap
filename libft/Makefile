@@ -14,13 +14,9 @@ CC = gcc -g
 
 NAME = libft.a
 
-SRC := $(shell find ! -name "ft_lst*.c" -name "*.c")
-
-BNS := $(wildcard ft_lst*.c)
+SRC := $(shell find -name "ft_*.c" -name "*.c")
 
 OBJ_S = $(SRC:.c=.o)
-
-OBJ_B = $(BNS:.c=.o)
 
 CFLAG = -Wall -Werror -Wextra
 
@@ -40,7 +36,4 @@ fclean: clean
 
 re: fclean all
 
-bonus: $(OBJ_B)
-	ar -rcs $(NAME) $^
-
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re

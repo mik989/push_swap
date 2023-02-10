@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "lib/push.h"
+#include "include/push.h"
 
 void swap(t_list **lst)
 {
