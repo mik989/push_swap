@@ -19,22 +19,16 @@ t_list	*ft_lstnew1(int content)
 	return (lista);
 }
 
-void    ft_sortlittle(t_list **lst)
-{
-    if ((*lst)->content > (*lst)->next->content)
-        sa(lst);    
-}
-
 int main (int ac, char **av)
 {
     int j;
     int i;
     t_list *a;
-    //t_list *b;
+    t_list *b;
     t_list *a1;
 
     a = NULL;
-    //b = NULL;
+    b = NULL;
     a1 = NULL;
     j = 1;
     i = 0;
@@ -79,18 +73,10 @@ int main (int ac, char **av)
         }        
         if (ac == 2)
             return 0;
-        if (ac == 3)
-        {
-            ft_sortlittle(&a);
-            ft_lstdsp(a);           
-        }
-        if (ac == 4)
-        {
-            ft_sortlittle(&a);
-            ft_lstdsp(a);  
-        }
-       /* if (ac == 5)
-            xxxx;
+        
+       if (ac > 2 && ac <= 6)
+           ft_sort_5(&a, &b, (ac - 1));
+/*
         if (ac == 6)
             xxxx;
         if (ac > 6)

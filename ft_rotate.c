@@ -11,19 +11,19 @@ void	ft_rotlst(t_list **lst)
 	tmp->next = NULL;
 }
 
-void ft_ra(t_list **a)
+void ra(t_list **a)
 {
     ft_rotlst(a);
     write(1, "ra\n", 3);
 }
 
-void ft_rb(t_list **b)
+void rb(t_list **b)
 {
     ft_rotlst(b);
     write(1, "rb\n", 3);
 }
 
-void ft_rr(t_list **a, t_list **b)
+void rr(t_list **a, t_list **b)
 {
     ft_rotlst(a);
     ft_rotlst(b);

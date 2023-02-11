@@ -1,6 +1,6 @@
 #include "include/push.h"
 
-void	ft_pa(t_list **stack_a, t_list **stack_b)
+void	pa(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*tmp;
 
@@ -13,7 +13,7 @@ void	ft_pa(t_list **stack_a, t_list **stack_b)
 	write(1, "pa\n", 3);
 }
 
-void	ft_pb(t_list **stack_a, t_list **stack_b)
+void	pb(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*tmp;
 

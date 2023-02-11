@@ -2,7 +2,7 @@ NAME		=	push_swap
 
 NAME_BONUS	=	checker
 
-SRC			=	push_swap.c ft_push.c ft_reverse.c ft_rotate.c ft_swap.c lst_utils.c utils.c
+SRC			=	push_swap.c ft_push.c ft_reverse.c ft_rotate.c ft_swap.c lst_utils.c utils.c sortlittle.c
 
 SRC_BONUS	=	
 
