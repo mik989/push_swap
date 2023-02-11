@@ -36,7 +36,6 @@ int main (int ac, char **av)
     a = NULL;
     //b = NULL;
     a1 = NULL;
-
     j = 1;
     i = 0;
         if(ac == 1)
@@ -83,11 +82,14 @@ int main (int ac, char **av)
         if (ac == 3)
         {
             ft_sortlittle(&a);
-            ft_lstdsp(a);            
+            ft_lstdsp(a);           
         }
-       /* if (ac == 4)
-            xxxx;
-        if (ac == 5)
+        if (ac == 4)
+        {
+            ft_sortlittle(&a);
+            ft_lstdsp(a);  
+        }
+       /* if (ac == 5)
             xxxx;
         if (ac == 6)
             xxxx;

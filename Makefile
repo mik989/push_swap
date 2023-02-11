@@ -2,7 +2,7 @@ NAME		=	push_swap
 
 NAME_BONUS	=	checker
 
-SRC			=	push_swap.c ft_push.c ft_reverse.c ft_rotate.c ft_swap.c
+SRC			=	push_swap.c ft_push.c ft_reverse.c ft_rotate.c ft_swap.c lst_utils.c utils.c
 
 SRC_BONUS	=	
 
@@ -12,16 +12,15 @@ OBJ			=	$(SRC:.c=.o)
 
 OBJ_BONUS	=	$(SRC_BONUS:.c=.o)
 
-CC			=	gcc
+CC			=	gcc -g
 
 RM			=	rm -f
 
 CFLAGS		=	-Wall -Wextra -Werror
 
-CFLAGSBN	=	-Wall -Wextra -Werror
-
 $(NAME):	$(OBJ)
 			make -C ./libft
+			@echo Libreria compilata!
 			$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT)
 
 all:		$(NAME)
@@ -33,6 +32,7 @@ clean:
 fclean: 	clean
 			make fclean -C libft
 			${RM} $(NAME) $(NAME_BONUS) ${OBJ} $(OBJ_BONUS)
+			@echo File .o e libreria rimossi!
 
 re:			fclean bonus
 

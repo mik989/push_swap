@@ -29,7 +29,7 @@ void ft_rra(t_list **a)
     write(1, "rra\n", 4);
 }
 
-void ft_rra(t_list **b)
+void ft_rrb(t_list **b)
 {
     ft_revlst(b);
     write(1, "rrb\n", 4);

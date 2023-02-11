@@ -17,7 +17,7 @@ void ft_ra(t_list **a)
     write(1, "ra\n", 3);
 }
 
-void ft_ra(t_list **b)
+void ft_rb(t_list **b)
 {
     ft_rotlst(b);
     write(1, "rb\n", 3);

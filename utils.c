@@ -1,82 +1,88 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-int main(void)
+#include "include/push.h"
+
+void ft_index_res_fill(int *array, t_lis_algo *v)
 {
-    int array[] = {0, 4, 12, 2, 10, 6, 9, 13, 3, 11, 7, 15};
-    int *length;
-    int *sub_s;
-    int *res; 
-    int len = (int)(sizeof(array)/sizeof(int));
-    int i = 0;
-    int j = 0;
-    int k = 0;
-    int c = 0;
-
-    length = malloc(sizeof(int) * len);
-    sub_s = malloc(sizeof(int) * len);
-
-    while(i < len)
-    {
-        length[i] = 1;
-        sub_s[i] = 0;
-        i++;
-    }
-    i = 1;
-    while(i < len)
-    {
-        while(j < i)
+     while(v->j >= 0)
         {
-            if(array[j] < array[i])
+            if(v->j == (v->length[v->len-1] - 1))
             {
-                k = length[j] + 1;
-                if(k >= length[i])
+                v->res[v->j] = v->len - 1;
+                v->j--;
+            }
+            v->res[v->j] = v->k;   
+            v->k = v->sub_s[v->k];      
+            v->j--;
+        }
+    v->j = 0;
+    while(v->j < v->length[v->i-1])
+    {  
+        v->k = v->res[v->j];
+        v->c = array[v->k];
+        v->res[v->j] = v->c;    
+        v->j++;
+    }  
+}
+
+void ft_lis_sub_s_fill(int *array, t_lis_algo *v)
+{
+	while(v->i < v->len)
+    {
+        while(v->j < v->i)
+        {
+            if(array[v->j] < array[v->i])
+            {
+                v->k = v->length[v->j] + 1;
+                if(v->k >= v->length[v->i])
                 { 
-                    length[i] = k;
-                    sub_s[i] = j;
+                    v->length[v->i] = v->k;
+                    v->sub_s[v->i] = v->j;
                 }
             }                      
-            j++;      
+            v->j++;      
         }                
-        j = 0;
-        i++;
+        v->j = 0;
+        v->i++;
     }
+    v->res = malloc(sizeof(int) * v->sub_s[v->len-1]);
+    v->j = v->length[v->len-1] - 1;
+    v->k = v->sub_s[v->len-1];
+}
 
-    res = malloc(sizeof(int) * sub_s[len-1]);
+void    ft_lis_init(int *array, t_lis_algo *v)
+{
+    v->len = (int)(sizeof(&array) / sizeof(int));
+    v->length = malloc(sizeof(int) * v->len);
+    v->sub_s = malloc(sizeof(int) * v->len);
+    v->i = 0;
+    v->k = 0;
+    v->c = 0;
+    v->j = 0;
+    while(v->i < v->len)
+    {
+        v->length[v->i] = 1;
+        v->sub_s[v->i] = 0;
+        v->i++;
+    }
+    v->i = 1;
+}
 
-    j = length[len-1] - 1;
-    k = sub_s[len-1];
+int *ft_lis_algo(int *array)
+{
+    t_lis_algo v;
 
-    while(j >= 0)
-        {
-            if(j == (length[len-1] - 1))
-            {
-                res[j] = len - 1;
-                j--;
-            }
-            res[j] = k;   
-            k = sub_s[k];      
-            j--;
-        }
-
-    j = 0;
-
-    while(j < length[i-1])
-    {  
-        k = res[j];
-        c = array[k];
-        res[j] = c;    
-        j++;
-    }  
+    ft_lis_init(array, &v);
+    ft_lis_sub_s_fill(array, &v);
+    ft_index_res_fill(array, &v);   
 
     printf("\nstringa finale = ");
-    j = 0;
-    while(j < length[i-1])
+    v.j = 0;
+    while(v.j < v.length[v.i-1])
     {
-        printf("%d ", res[j]);
-        j++;
+        printf("%d ", v.res[v.j]);
+        v.j++;
     }
-    free(length);
-    free(sub_s);
-    free(res);
+    free(v.length);
+    free(v.sub_s);
+    /*LIBERARE v.res A TERMINE DEL PROGRAMMA*/
+    return(v.res);
 }
