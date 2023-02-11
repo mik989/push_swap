@@ -6,8 +6,9 @@ int main()
 {
     int array[] = {0, 4, 12, 2, 10, 6, 9, 13, 3, 11, 7, 15};
     int len_array = (int)(sizeof(array) / sizeof(int));
-    int length[] = {0, 4, 12, 2, 10, 6, 9, 13, 3, 11, 7, 15};
-    int sub_s[] = {0, 4, 12, 2, 10, 6, 9, 13, 3, 11, 7, 15};
+    int *length = malloc(sizeof(int) * len_array);
+    int *sub_s = malloc(sizeof(int) * len_array);
+    int *res;
     int i = 0;
     int j;
     int k = 1;
@@ -37,6 +38,55 @@ int main()
         j = 0;
         i++;
     }
+
+    res = malloc(sizeof(int) * length[i-1]); 
+
+    j = length[len_array-1] - 1;
+    k = sub_s[len_array-1];
+     while(j > 0)
+        {
+            if(j == (length[len_array-1] - 1))
+            {
+                res[j] = len_array - 1;
+                j--;
+            }
+            res[j] = k;   
+            k = sub_s[k];      
+            j--;
+        }  
+    int c = 0;
+    j = 0;
+    while(j < length[i-1])
+    {  
+        k = res[j];
+        c = array[k];
+        res[j] = c;    
+        j++;
+    }
+    
+    printf("\n i = %d", i); 
+    printf("\nlength[i] = %d", length[i-1]);
+
+    i = 0;
+    j = 0;
+
+    printf("\narray = ");
+    while(i < len_array) 
+    {
+        printf("%d ", array[i]);
+        i++;
+    }
+
+    i = 0;
+    j = 0;
+
+    printf("\nlength array = ");
+    while(i < len_array) 
+    {
+        printf("%d ", length[i]);
+        i++;
+    }
+
     i = 0;
     j = 0;
     printf("\nSub Sequence = ");
@@ -45,6 +95,18 @@ int main()
         printf("%d ", sub_s[i]);
         i++;
     }
-    
+    i = 0;
+    j = length[len_array - 1];
+    printf("\nFinal result = ");
+    while(i < j) 
+    {  
+        printf("%d ", res[i]);
+        i++;
+    }
+
+    printf("\n");
+    free(length);
+    free(sub_s);
+    free(res);
     return 0;
 }
