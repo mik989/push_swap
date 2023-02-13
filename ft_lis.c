@@ -84,5 +84,6 @@ int *ft_lis_algo(int *array)
     free(v.length);
     free(v.sub_s);
     /*LIBERARE v.res A TERMINE DEL PROGRAMMA*/
+    /*LIBERARE LISTA v A TERMINE DEL PROGRAMMA*/
     return(v.res);
 }

@@ -53,6 +53,7 @@ int     ft_is_min_pos(t_list **a)
         tmp = tmp->next;
 	}
     i = min_pos(*a, result);
+    tmp = *a;
     return (i);
 }
 
@@ -67,4 +68,19 @@ void    ft_push_min_a(t_list **a, t_list **b)
         ft_butta_giu(a, (ft_list_size(*a) - j));
     pb(a, b);
     return ;
+}
+
+void    ft_free_stack(t_list *start)
+{
+	t_list	*i;
+	t_list	*next;
+
+	i = start;
+	next = NULL;
+	while (i)
+	{
+		next = i->next;
+		free(i);
+		i = next;
+	}
 }

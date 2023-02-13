@@ -40,9 +40,10 @@ typedef struct s_list
 	struct s_list	*next;
 }t_list;
 
-void ft_butta_su(t_list **a, int i);
-void ft_butta_giu(t_list **a, int i);
-int min_pos(t_list *tmp, int i);
+void    ft_free_stack(t_list *start);
+void    ft_butta_su(t_list **a, int i);
+void    ft_butta_giu(t_list **a, int i);
+int     min_pos(t_list *tmp, int i);
 int     ft_is_min_pos(t_list **a);
 void    ft_push_min_a(t_list **a, t_list **b);
 void    ft_lstdsp(t_list *lst);

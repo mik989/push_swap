@@ -79,8 +79,6 @@ void	ft_sort_3(t_list **a)
 
 void	ft_sort(t_list **a, t_list **b, int size)
 {
-	//int	i;
-
 	if (ft_is_ordered(*a))
 		return ;
 	if (size == 2)

@@ -5,12 +5,11 @@ int main (int ac, char **av)
     int j;
     int i;
     t_list *a;
+    t_list *new;
     t_list *b;
-    t_list *a1;
 
     a = NULL;
     b = NULL;
-    a1 = NULL;
     j = 1;
     i = 0;
         if(ac == 1)
@@ -48,8 +47,8 @@ int main (int ac, char **av)
         while (i < ac)
         {
             int pippo = ft_atoi(av[i]);            
-            a1 = ft_lstnew(pippo);
-            ft_lstadd_back(&a, a1);
+            new = ft_lstnew(pippo);
+            ft_lstadd_back(&a, new);
             i++;
         }        
         if (ac == 2)
@@ -63,9 +62,9 @@ int main (int ac, char **av)
             printf("%d ", a->content);
             a = a->next;
         }
-/*
-        if (ac == 6)
-            xxxx;
-        if (ac > 6)
-            xxxx;*/
-}
+        ft_free_stack(a);
+        ft_free_stack(b);
+        ft_free_stack(new);
+
+
+}   
