@@ -99,12 +99,11 @@ void	ft_sort(t_list **a, t_list **b, int size)
 		int	i;
 		
 		i = 2;
-		while (i-- > 0)
+		while (i--)
 			ft_push_min_a(a, b);
 		ft_sort_3(a);
 		pa(a, b);
 		pa(a, b);
-		sa(a);
 	}
 	return ;
 }

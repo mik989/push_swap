@@ -64,7 +64,7 @@ void    ft_push_min_a(t_list **a, t_list **b)
     if (j <= ft_list_size(*a) / 2)
         ft_butta_su(a, (j - 1));
     else  
-        ft_butta_giu(a, (ft_list_size(*a) - j + 1));
+        ft_butta_giu(a, (ft_list_size(*a) - j));
     pb(a, b);
     return ;
 }
