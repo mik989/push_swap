@@ -1,5 +1,33 @@
 #include "include/push.h"
 
+int ft_list_size(t_list *lst)
+{
+	int size;
+	
+	size = 0;
+	while (lst != NULL)
+	{
+		++size;
+		lst = lst->next;
+	}
+	return (size);
+}
+
+int	ft_is_ordered(t_list *a)
+{
+	t_list *tmp;
+	tmp = a;
+	while(a != NULL)
+	{
+		if(a->content > a->next->content)
+			return (0);
+		a = a->next;
+	}
+	free(tmp);
+	return (1);
+
+}
+
 void	ft_sort_2(t_list **a)
 {
 	t_list	*beholder;
@@ -11,11 +39,11 @@ void	ft_sort_2(t_list **a)
 		sa(a);
 }
 
-void	first_sort_3_if(t_list *tmp, t_list *tmp2, t_list *tmp3, t_list **a)
+void	first_sort(int temp_1, int temp_2, int temp_3 ,t_list **a)
 {
-	if (tmp2->content < tmp3->content)
+	if (temp_2 < temp_3)
 		return ;
-	else if (tmp3->content < tmp->content)
+	else if (temp_3 < temp_1)
 		rra(a);
 	else
 	{
@@ -26,18 +54,18 @@ void	first_sort_3_if(t_list *tmp, t_list *tmp2, t_list *tmp3, t_list **a)
 
 void	ft_sort_3(t_list **a)
 {
-	t_list	*tmp;
-	t_list	*tmp2;
-	t_list	*tmp3;
+	int temp_1;
+	int temp_2;
+	int temp_3;
 
-	tmp = *a;
-	tmp2 = tmp->next;
-	tmp3 = tmp2->next;
-	if (tmp->content < tmp2->content)
-		first_sort_3_if(tmp, tmp2, tmp3, a);
-	else if (tmp2->content < tmp3->content)
+	temp_1 = (*a)->content;
+	temp_2 = (*a)->next->content;
+	temp_3 = (*a)->next->next->content;
+	if (temp_1 < temp_2)
+		first_sort(temp_1, temp_2, temp_3, a);
+	else if (temp_2 < temp_3)
 	{
-		if (tmp3->content < tmp->content)
+		if (temp_3 < temp_1)
 			ra(a);
 		else
 			sa(a);
@@ -49,26 +77,34 @@ void	ft_sort_3(t_list **a)
 	}
 }
 
-void	ft_sort_5(t_list **a, t_list **b, int size)
+void	ft_sort(t_list **a, t_list **b, int size)
 {
-	//if (is_ordered(*a))
-	//	return ;
+	//int	i;
+
+	if (ft_is_ordered(*a))
+		return ;
 	if (size == 2)
 		ft_sort_2(a);
 	if (size == 3)
 		ft_sort_3(a);
 	if (size == 4)
 	{
-	//	push_min(a, b);
+		ft_push_min_a(a, b);
 		ft_sort_3(a);
 		pa(a, b);
 	}
+	
 	if (size == 5)
 	{
-	//	push_min(a, b);
-	//	push_min(a, b);
+		int	i;
+		
+		i = 2;
+		while (i-- > 0)
+			ft_push_min_a(a, b);
 		ft_sort_3(a);
 		pa(a, b);
 		pa(a, b);
+		sa(a);
 	}
+	return ;
 }

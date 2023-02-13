@@ -1,24 +1,5 @@
 #include "include/push.h"
 
-void ft_lstdsp(t_list *lst)
-{
-        while (lst)
-        {
-          printf("%d\n", lst->content);
-          lst = lst->next;
-        }
-}
-
-t_list	*ft_lstnew1(int content)
-{
-	t_list	*lista;
-
-	lista = malloc(sizeof(t_list));
-	lista->content = content;
-	lista->next = NULL;
-	return (lista);
-}
-
 int main (int ac, char **av)
 {
     int j;
@@ -67,19 +48,24 @@ int main (int ac, char **av)
         while (i < ac)
         {
             int pippo = ft_atoi(av[i]);            
-            a1 = ft_lstnew1(pippo);
+            a1 = ft_lstnew(pippo);
             ft_lstadd_back(&a, a1);
             i++;
         }        
         if (ac == 2)
             return 0;
         
-       if (ac > 2 && ac <= 6)
-           ft_sort_5(&a, &b, (ac - 1));
+        if (ac > 2 && ac <= 6)
+           ft_sort(&a, &b, (ac - 1));
+
+        while(a != NULL )
+        {
+            printf("%d ", a->content);
+            a = a->next;
+        }
 /*
         if (ac == 6)
             xxxx;
         if (ac > 6)
             xxxx;*/
 }
-        

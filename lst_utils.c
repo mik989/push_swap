@@ -1,5 +1,24 @@
 #include "include/push.h"
 
+void ft_lstdsp(t_list *lst)
+{
+        while (lst)
+        {
+          printf("%d\n", lst->content);
+          lst = lst->next;
+        }
+}
+
+t_list	*ft_lstnew(int content)
+{
+	t_list	*lista;
+
+	lista = malloc(sizeof(t_list));
+	lista->content = content;
+	lista->next = NULL;
+	return (lista);
+}
+
 t_list	*ft_lstlast(t_list *lst)
 {
 	if (lst == NULL)
@@ -23,4 +42,17 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 			tmp->next = new;
 		}
 	}
+}
+
+int	ft_lstsize(t_list *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst != NULL)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }
