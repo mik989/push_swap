@@ -40,6 +40,7 @@ typedef struct s_list
 	struct s_list	*next;
 }t_list;
 
+void    ft_sort_lis(t_list **a, t_list **b, int size);
 void    ft_free_stack(t_list *start);
 void    ft_butta_su(t_list **a, int i);
 void    ft_butta_giu(t_list **a, int i);
@@ -51,7 +52,7 @@ t_list	*ft_lstnew(int content);
 int     ft_list_size(t_list *lst);
 int     ft_is_ordered(t_list *a);
 void	ft_sort(t_list **a, t_list **b, int size);
-int     *ft_lis_algo(int *array);
+int     *ft_lis_algo(int *array, int size);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	pa(t_list **stack_a, t_list **stack_b);

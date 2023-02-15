@@ -2,7 +2,7 @@
 
 void ft_butta_su(t_list **a, int i)
 {
-    while (i > 0)
+    while (i >= 0)
     {
         ra(a);
         i--;
@@ -12,7 +12,7 @@ void ft_butta_su(t_list **a, int i)
 
 void ft_butta_giu(t_list **a, int i)
 {
-    while (i > 0)
+    while (i >= 0)
     {
         rra(a);
         i--;

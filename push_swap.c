@@ -16,7 +16,7 @@ int main (int ac, char **av)
             return 0;         
         while(j < ac)
         {
-            while(av[j][i] != '\0' && (j < ac - 1))
+            while(av[j][i] != '\0' && (j < ac))
                 {
                     if (ft_isdigit(av[j][i]))
                         i++;
@@ -26,6 +26,7 @@ int main (int ac, char **av)
                     }
                 }
                 j++;
+                i = 0;
         }
         j = 1;
         i = j + 1;
@@ -56,15 +57,22 @@ int main (int ac, char **av)
         
         if (ac > 2 && ac <= 6)
            ft_sort(&a, &b, (ac - 1));
-
+        if (ac > 6)
+           ft_sort_lis(&a, &b, (ac - 1));  
+        printf("\nstack A = ");
         while(a != NULL )
         {
             printf("%d ", a->content);
             a = a->next;
         }
-        ft_free_stack(a);
-        ft_free_stack(b);
-        ft_free_stack(new);
-
+        printf("\nstack B = ");
+        while(b != NULL )
+        {
+            printf("%d ", b->content);
+            b = b->next;
+        }
+        //ft_free_stack(a);
+        //ft_free_stack(b);
+        //ft_free_stack(new);
 
 }   
