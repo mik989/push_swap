@@ -21,6 +21,14 @@
 # include <string.h>
 # include <unistd.h>
 
+struct node {
+	int val;
+    int len;
+	struct node *next;
+};
+
+
+/*
 typedef struct s_lis_algo
 {
     int *length;
@@ -33,10 +41,12 @@ typedef struct s_lis_algo
     int c;
 
 }t_lis_algo;
+*/
 
 typedef struct s_list
 {
 	int			content;
+    int         len;
 	struct s_list	*next;
 }t_list;
 

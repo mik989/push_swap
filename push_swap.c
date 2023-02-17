@@ -71,8 +71,9 @@ int main (int ac, char **av)
             printf("%d ", b->content);
             b = b->next;
         }
-        //ft_free_stack(a);
-        //ft_free_stack(b);
-        //ft_free_stack(new);
+        putchar('\n');
+        ft_free_stack(a);
+        ft_free_stack(b);
+        ft_free_stack(new);
 
 }   
