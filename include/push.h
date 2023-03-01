@@ -27,22 +27,6 @@ struct node {
 	struct node *next;
 };
 
-
-/*
-typedef struct s_lis_algo
-{
-    int *length;
-    int *sub_s;
-    int *res; 
-    int len;
-    int i;
-    int j;
-    int k;
-    int c;
-
-}t_lis_algo;
-*/
-
 typedef struct s_list
 {
 	int			content;
