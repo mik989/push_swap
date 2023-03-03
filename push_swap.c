@@ -10,6 +10,7 @@ int main (int ac, char **av)
 
     a = NULL;
     b = NULL;
+    new = NULL;
     j = 1;
     i = 0;
         if(ac == 1)
@@ -34,7 +35,7 @@ int main (int ac, char **av)
         {
             while(av[j] && (i < ac))
                 {
-                    if(ft_atoi(av[j]) == ft_atoi(av[i]))
+                    if(atoi(av[j]) == atoi(av[i]))
                     {
                         write(2, "Error\n", 6);
                         exit(0);
@@ -47,7 +48,8 @@ int main (int ac, char **av)
         i = 1;        
         while (i < ac)
         {
-            int pippo = ft_atoi(av[i]);            
+            int pippo = atoi(av[i]); 
+            printf("PIPPO = %d\n", pippo);           
             new = ft_lstnew(pippo);
             ft_lstadd_back(&a, new);
             i++;
@@ -58,7 +60,11 @@ int main (int ac, char **av)
         if (ac > 2 && ac <= 6)
            ft_sort(&a, &b, (ac - 1));
         if (ac > 6)
-           ft_sort_lis(&a, &b, (ac - 1));  
+        {
+            printf("spaccatutto -4\n");
+            ft_sort_lis(&a, &b, (ac - 1));  
+            
+        }
         printf("\nstack A = ");
         while(a != NULL )
         {

@@ -10,6 +10,7 @@ t_list *lis(int *v, int len)
 	while (i++ < len)
 		n[i].content = v[i];
     i = len;
+    n[i].next = NULL;
 	while(i--) 
     {
         p = n + i; 
@@ -22,7 +23,6 @@ t_list *lis(int *v, int len)
 			}
 		}
 	}
-
 	i = 0;
     p = n;
 	while (i++ < len)
@@ -33,6 +33,7 @@ t_list *lis(int *v, int len)
 
 void    ft_sort_lis(t_list **a, t_list **b, int size)
 {
+    printf("spaccatutto -7\n");
     int i;
     int *tab_1;
     t_list *tmp_a;
@@ -41,35 +42,37 @@ void    ft_sort_lis(t_list **a, t_list **b, int size)
     tmp_a = *a;
     i = 0;
     tab_1 = malloc(sizeof(int) * size);
+    printf("spaccatutto -6\n");
     while(tmp_a != NULL)
     {
         tab_1[i] = tmp_a->content;
         i++;
         tmp_a = tmp_a->next;
     }
+    printf("spaccatutto -5\n");
     tmp_b = lis(tab_1, size);
     i = 0;
-    /*tmp_a = tmp_b;
-    do printf(" %d", tmp_a->content); while ((tmp_a = tmp_a->next));
-	putchar('\n');
-    printf("\nSIZE = %d", size);
-    printf("\ncosa dovrei trovare nello stack A =");*/
+    printf("spaccatutto -3\n");
     while(i < size)
     {
         printf(" %d", tmp_b->content);
         if(tmp_b->content == (*a)->content && tmp_b->next != NULL) 
-        {
-            ra(a);
-            tmp_b = tmp_b->next;               
-        }
+            {
+                ra(a);
+                tmp_b = tmp_b->next;               
+            }
         else
-            pb(a, b);     
+            {
+                pb(a, b);
+            }       
         i++;
     }
     i = 0;
+    printf("spaccatutto -2\n");
     size = ft_list_size(*b);
     while(i < size)
     {
+        printf("spaccatutto -1\n");
         ft_movement(a, b, size);
         i++;
     }
