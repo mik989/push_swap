@@ -67,9 +67,10 @@ void    ft_sort_lis(t_list **a, t_list **b, int size)
         i++;
     }
     i = 0;
-    while(i < ft_list_size(b))
+    size = ft_list_size(*b);
+    while(i < size)
     {
-        ft_movement(a, b, ft_list_size(b));
+        ft_movement(a, b, size);
         i++;
     }
 }

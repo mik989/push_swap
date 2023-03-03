@@ -34,6 +34,7 @@ typedef struct s_list
 	struct s_list	*next;
 }t_list;
 
+void ft_movement(t_list **a, t_list **b, int k);
 void    ft_sort_lis(t_list **a, t_list **b, int size);
 void    ft_free_stack(t_list *start);
 void    ft_butta_su(t_list **a, int i);
