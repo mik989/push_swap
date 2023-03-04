@@ -1,5 +1,37 @@
 #include "include/push.h"
+/*t_list	*create_node(int val)
+{
+	t_list	*i;
 
+	i = (t_list *)malloc(sizeof(t_list));
+	i->content = val;
+	i->len = 0;
+	i->next = NULL;
+	return (i);
+}
+t_list	*create_list(int ac, int *av)
+{
+	int		i;
+	t_list	*start;
+	t_list	*tmp;
+	t_list	*next;
+
+	i = 1;
+	start = NULL;
+	tmp = NULL;
+	next = NULL;
+	while (i < ac)
+	{
+		next = create_node(atoi(av[i]));
+		if (start == NULL)
+			start = next;
+		if (tmp != NULL)
+			tmp->next = next;
+		tmp = next;
+		i++;
+	}
+	return (start);
+}*/
 void ft_butta_su(t_list **a, int i)
 {
     while (i >= 0)

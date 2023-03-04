@@ -1,39 +1,68 @@
 #include "include/push.h"
+void ft_printlist(t_list *o)
+{
+    t_list *p;
+
+    p = o;
+    
+    while(p != NULL)
+    {
+        printf(" %d", p->content);
+        p = p->next;
+        if (!p)
+            break;  
+    }
+}
+
 t_list *lis(int *v, int len)
 {
 	int i;
-	t_list *p;
-    t_list *n; 
+	lis_list *p; 
+    lis_list *n = calloc(sizeof(lis_list), len);
+    t_list *k;
+    t_list *t;
 
-    n = calloc(len, sizeof *n);
-    i = 0;
-	while (i++ < len)
-		n[i].content = v[i];
-    i = len;
-    n[i].next = NULL;
-	while(i--) 
-    {
-        p = n + i; 
-		while(p++ < n + len) 
-        {
-			if (p->content > n[i].content && p->len >= n[i].len)
-            {
+    
+	for (i = 0; i < len; i++)
+		n[i].val = v[i];
+
+	for (i = len; i--; ) {
+		for (p = n + i; p++ < n + len; ) {
+			if (p->val > n[i].val && p->len >= n[i].len) {
 				n[i].next = p;
 				n[i].len = p->len + 1;
 			}
 		}
 	}
-	i = 0;
-    p = n;
-	while (i++ < len)
-		if (n[i].len > p->len) 
-            p = n + i;
-    return(p);
+	for (i = 0, p = n; i < len; i++)
+		if (n[i].len > p->len) p = n + i;
+
+	//do printf(" %d", p->val); while ((p = p->next));
+	//putchar('\n');
+    //exit(0);
+    i = ft_lstlisize(p);
+    //printf("i = %d\n", i);
+    k = malloc(sizeof(t_list));
+    t = k;
+    while(p->next)
+    {
+        k->content = p->val;
+        k->next = malloc(sizeof(t_list));
+        //printf("k->content = %d\n", k->content);
+        //printf("p->val = %d\n", p->val);
+        k = k->next;  
+        p = p->next;
+    }
+    k->content = p->val;
+    k->next = NULL;
+    //printf("\nPRINT LIST t = ");
+    //ft_printlist(t);
+    //exit(0);
+    return(t);
 }
 
 void    ft_sort_lis(t_list **a, t_list **b, int size)
 {
-    printf("spaccatutto -7\n");
     int i;
     int *tab_1;
     t_list *tmp_a;
@@ -42,38 +71,48 @@ void    ft_sort_lis(t_list **a, t_list **b, int size)
     tmp_a = *a;
     i = 0;
     tab_1 = malloc(sizeof(int) * size);
-    printf("spaccatutto -6\n");
     while(tmp_a != NULL)
     {
         tab_1[i] = tmp_a->content;
         i++;
         tmp_a = tmp_a->next;
     }
-    printf("spaccatutto -5\n");
     tmp_b = lis(tab_1, size);
     i = 0;
-    printf("spaccatutto -3\n");
+    //int j = ft_list_size(tmp_b);
+    
     while(i < size)
     {
-        printf(" %d", tmp_b->content);
-        if(tmp_b->content == (*a)->content && tmp_b->next != NULL) 
+        
+        if(tmp_b->content == (*a)->content) 
+        {
+            if(tmp_b->next == NULL)
             {
                 ra(a);
-                tmp_b = tmp_b->next;               
+                break;
             }
-        else
+            else
             {
-                pb(a, b);
-            }       
+                ra(a);
+                tmp_b = tmp_b->next; 
+            }
+        }
+        else
+            pb(a,b);
+        
         i++;
     }
     i = 0;
-    printf("spaccatutto -2\n");
     size = ft_list_size(*b);
-    while(i < size)
-    {
-        printf("spaccatutto -1\n");
+    //printf("\n***** DOPO IL PUSH *****");
+    //printf("\nsize = %d\n", size);
+    //printf("\nLISTA A= ");
+    //ft_printlist(*a);
+    //printf("\nLISTA B= ");
+    //ft_printlist(*b);
+   // while(i < size)
+    //{
         ft_movement(a, b, size);
-        i++;
-    }
+      //  i++;
+    //}
 }

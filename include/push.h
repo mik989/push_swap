@@ -21,11 +21,10 @@
 # include <string.h>
 # include <unistd.h>
 
-struct node {
-	int val;
-    int len;
+typedef struct node {
+	int val, len;
 	struct node *next;
-};
+}lis_list;
 
 typedef struct s_list
 {
@@ -34,6 +33,8 @@ typedef struct s_list
 	struct s_list	*next;
 }t_list;
 
+void ft_printlist(t_list *o);
+int	ft_lstlisize(lis_list *lst);
 void ft_movement(t_list **a, t_list **b, int k);
 void    ft_sort_lis(t_list **a, t_list **b, int size);
 void    ft_free_stack(t_list *start);

@@ -49,7 +49,7 @@ int main (int ac, char **av)
         while (i < ac)
         {
             int pippo = atoi(av[i]); 
-            printf("PIPPO = %d\n", pippo);           
+            //printf("PIPPO = %d\n", pippo);           
             new = ft_lstnew(pippo);
             ft_lstadd_back(&a, new);
             i++;
@@ -61,10 +61,10 @@ int main (int ac, char **av)
            ft_sort(&a, &b, (ac - 1));
         if (ac > 6)
         {
-            printf("spaccatutto -4\n");
             ft_sort_lis(&a, &b, (ac - 1));  
             
         }
+        printf("\n***** STACK A E B FINALI *****");
         printf("\nstack A = ");
         while(a != NULL )
         {
