@@ -55,8 +55,8 @@ t_list *lis(int *v, int len)
     }
     k->content = p->val;
     k->next = NULL;
-    //printf("\nPRINT LIST t = ");
-    //ft_printlist(t);
+    printf("\nPRINT LIST t = ");
+    ft_printlist(t);
     //exit(0);
     return(t);
 }
@@ -106,13 +106,13 @@ void    ft_sort_lis(t_list **a, t_list **b, int size)
     size = ft_list_size(*b);
     //printf("\n***** DOPO IL PUSH *****");
     //printf("\nsize = %d\n", size);
-    //printf("\nLISTA A= ");
-    //ft_printlist(*a);
-    //printf("\nLISTA B= ");
-    //ft_printlist(*b);
+    printf("\nLISTA A= ");
+    ft_printlist(*a);
+    printf("\nLISTA B= ");
+    ft_printlist(*b);
    // while(i < size)
     //{
-        ft_movement(a, b, size);
+        //ft_movement(a, b, size);
       //  i++;
     //}
 }

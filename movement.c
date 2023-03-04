@@ -26,6 +26,7 @@ int *ft_move_a(int k, t_list **a, t_list **b)
 {
     int i;
     int j;
+   // int flag = 0;
     int *mov_a;
     t_list *tmp_a;
     t_list *tmp_b;
@@ -48,13 +49,18 @@ int *ft_move_a(int k, t_list **a, t_list **b)
                 j++;
                 break;
             }
+            //else
+            //   flag = tmp_b->content;
             i++;
             tmp_a = tmp_a->next;
-        }
+        } 
+      // A 70 15 40 50 65
+      // B 35 42 90 10 85
         i = 0;
         tmp_a = *a;
         tmp_b = tmp_b->next;
     }
+    //if (flag == 1)
     return(mov_a);
 }
 int ft_max(int mov_a, int mov_b)
