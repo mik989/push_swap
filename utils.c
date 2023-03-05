@@ -88,6 +88,42 @@ int     ft_is_min_pos(t_list **a)
     tmp = *a;
     return (i);
 }
+int     ft_is_min(t_list **a)
+{
+    t_list *tmp;
+    int result;
+    
+    if(!a)
+        return 0;
+    tmp = *a;
+	result = tmp->content;
+	while(tmp->next != NULL)
+	{
+		if (result >  tmp->next->content)
+			result = tmp->next->content;
+        tmp = tmp->next;
+	}
+    tmp = *a;
+    return (result);
+}
+int     ft_is_max(t_list **a)
+{
+    t_list *tmp;
+    int result;
+    
+    if(!a)
+        return 0;
+    tmp = *a;
+	result = tmp->content;
+	while(tmp->next != NULL)
+	{
+		if (result <  tmp->next->content)
+			result = tmp->next->content;
+        tmp = tmp->next;
+	}
+    tmp = *a;
+    return (result);
+}
 
 void    ft_push_min_a(t_list **a, t_list **b)
 {

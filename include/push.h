@@ -33,6 +33,10 @@ typedef struct s_list
 	struct s_list	*next;
 }t_list;
 
+int     ft_is_max(t_list **a);
+int     ft_is_min_arr(int *arr, int size);
+int     ft_is_min_arr_pos(int *arr, int size);
+int     ft_is_min(t_list **a);
 void ft_printlist(t_list *o);
 int	ft_lstlisize(lis_list *lst);
 void ft_movement(t_list **a, t_list **b, int k);
