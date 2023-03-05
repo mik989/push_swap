@@ -113,4 +113,25 @@ void    ft_sort_lis(t_list **a, t_list **b, int size)
         ft_movement(a, b, size);
         size--;
     }
+    tmp_a = *a;
+    tmp_b = *b;
+    printf("\nNUMERI STACK A = ");
+    while(tmp_a)
+    {
+        printf(" %d", tmp_a->content);
+        if(tmp_a->next == NULL)
+            break;
+         tmp_a = tmp_a->next;
+        i++;
+    }
+
+    i = 0;
+    printf("\nNUMERI STACK B = ");
+    while(tmp_b)
+    {
+        printf(" %d", tmp_b->content);
+        tmp_b = tmp_b->next;
+        i++;
+    }
+    ft_ultimate_movement(a);
 }

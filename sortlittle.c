@@ -25,7 +25,6 @@ int	ft_is_ordered(t_list *a)
 	}
 	free(tmp);
 	return (1);
-
 }
 
 void	ft_sort_2(t_list **a)

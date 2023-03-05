@@ -119,10 +119,11 @@ int *ft_move_a(int k, t_list **a, t_list **b)
         {
             if(tmp_b->content < tmp_a->content)
             {
-                if(i < (ft_list_size(*a) / 2))
+                /*if(i < (ft_list_size(*a) / 2))
                     mov_a[j] = i;
                 else
-                    mov_a[j] = i - ft_list_size(*a);
+                    mov_a[j] = i - ft_list_size(*a);*/
+                mov_a[j] = nextGreaterElement(a, tmp_b->content);    
                 j++;
                 tmp_a = *a;
                 break;
@@ -327,7 +328,7 @@ void ft_movement(t_list **a, t_list **b, int k)
 
     i = 0;
     printf("\nNUMERI STACK A = ");
-    while(i < k)
+    while(_a)
     {
         printf(" %d", _a->content);
         if(_a->next == NULL)
@@ -338,13 +339,12 @@ void ft_movement(t_list **a, t_list **b, int k)
 
     i = 0;
     printf("\nNUMERI STACK B = ");
-    while(i < k)
+    while(_b)
     {
         printf(" %d", _b->content);
         _b = _b->next;
         i++;
     }
-    
     i = 0;  
     _b = *b; 
     //printf("\nLISTA A= ");
@@ -363,6 +363,8 @@ void ft_movement(t_list **a, t_list **b, int k)
     printf("\nMOSSE mov_b = ");
     while(i < k)
           printf(" %d", mov_b[i++]);
+    //printf("\n");
+    //exit(0);
     i = 0;
     i = ft_index(k, mov_a, mov_b);
     printf("\n***** indice mossa migliore = %d *****\n", i);
