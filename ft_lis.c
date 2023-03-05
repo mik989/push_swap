@@ -106,7 +106,7 @@ void    ft_sort_lis(t_list **a, t_list **b, int size)
     /*if(ft_list_size(*a) < ft_list_size(*b))
         size = ft_list_size(*a);
     else*/
-        size = ft_list_size(*b);
+    size = ft_list_size(*b);
     while(size > 0)
     {
         printf("\n****** %d *****\n", size);
