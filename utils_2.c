@@ -24,11 +24,11 @@ int nextGreaterElement(t_list **a, int n)
     //return(i+1);
     //printf("\n***** POSIZIONE DEL NUMERO = %d *****\n", i);
     if(flag == 0)
-        {
-            i = ft_is_min_pos(a);
-            //printf("\n***** VALORE N = %d *****\n", n);
-            //printf("\n***** VALORE MIN_POS = %d *****\n", i);
-        }
+    {
+        i = ft_is_min_pos(a);
+        //printf("\n***** VALORE N = %d *****\n", n);
+        //printf("\n***** VALORE MIN_POS = %d *****\n", i);
+    }
     if(i < (ft_list_size(*a) / 2))
         return(i);
     else

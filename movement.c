@@ -26,7 +26,7 @@ int *ft_move_b(int k)
 
 int *ft_move_a(int k, t_list **a, t_list **b)
 {
-    int i;
+ int i;
     int j;
     int *mov_a;
     t_list *tmp_a;
@@ -50,13 +50,13 @@ int *ft_move_a(int k, t_list **a, t_list **b)
             }
             if((tmp_a->next == NULL) )  
             {
-                if(ft_is_max_pos(b) == 0)
+                //mov_a[j] = nextGreaterElement(a, tmp_b->content);
+                if(ft_is_min_pos(a) == 0)
                     mov_a[j] = 0;
-                else if(ft_is_max_pos(b) < ft_list_size(*b) / 2)
-                    mov_a[j] = ft_is_max_pos(b);
+                else if(ft_is_min_pos(a) < ft_list_size(*a) / 2)
+                    mov_a[j] = ft_is_min_pos(a);
                 else
-                    mov_a[j] = ft_is_max_pos(b) - ft_list_size(*b);                   
-                j++;
+                    mov_a[j] = ft_is_min_pos(a) - ft_list_size(*a);
                 //tmp_a = *a;
                 break;
             }
@@ -71,6 +71,11 @@ int *ft_move_a(int k, t_list **a, t_list **b)
     tmp_b = *b;
     return(mov_a);
 }
+
+//  A   1 3 4 8 9
+//  B   7 6 2 10 5
+//  a   0 0  0  0  0
+//  b   0 1 -3 -2 -1
 
 int ft_max(int mov_a, int mov_b)
 {
@@ -215,15 +220,21 @@ void    ft_move_max(int mov_a, int mov_b, t_list **a, t_list **b)
     pa(a, b);    
     return;
 }
+
+//  A   4 5 6 9 10 1
+//  B   2 3 7 8
+//  a   0 0 -3 -3 
+//  b   0 1 -2 -1 
+
 void    ft_move_max_min(int mov_a, int mov_b, t_list **a, t_list **b)
 {
    
-    while(mov_a > 0)
+    while(mov_a != 0)
     {
         ra(a);
         mov_a--;
     }
-    while(mov_b < 0)
+    while(mov_b != 0)
     {
         rrb(b);
         mov_b++;
@@ -233,12 +244,12 @@ void    ft_move_max_min(int mov_a, int mov_b, t_list **a, t_list **b)
 }
 void    ft_move_min_max(int mov_a, int mov_b, t_list **a, t_list **b)
 {    
-    while(mov_a < 0)
+    while(mov_a != 0)
     {
         rra(a);
         mov_a++;
     }
-    while(mov_b > 0)
+    while(mov_b != 0)
     {
         rb(b);
         mov_b--;
@@ -251,7 +262,8 @@ void ft_movement(t_list **a, t_list **b, int k)
     int *mov_b;
     int *mov_a;
     int i;
-    /*t_list *_a;
+    
+    t_list *_a;
     t_list *_b;
 
     _a = *a;
@@ -277,17 +289,17 @@ void ft_movement(t_list **a, t_list **b, int k)
         i++;
     }
     i = 0;  
-    _b = *b; */
+    _b = *b; 
     //printf("\nLISTA A= ");
     //ft_printlist(*a);
     //printf("\nLISTA B= ");
-    //ft_printlist(*b);
+    //ft_printlist(*b);*/
 
     mov_b = ft_move_b(k);
     
     mov_a = ft_move_a(k, a, b);
 
-    /*printf("\nMOSSE mov_a = ");
+    printf("\nMOSSE mov_a = ");
     while(i < k)
           printf(" %d", mov_a[i++]);
     i = 0;
@@ -295,7 +307,7 @@ void ft_movement(t_list **a, t_list **b, int k)
     while(i < k)
           printf(" %d", mov_b[i++]);
     //printf("\n");
-    //exit(0);*/
+    //exit(0);
     i = 0;
     i = ft_index(k, mov_a, mov_b);
     //printf("\n***** indice mossa migliore = %d *****\n", i);
