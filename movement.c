@@ -1,5 +1,4 @@
 #include "include/push.h"
-
 int *ft_move_b(int k)
 {
     int i;
@@ -23,82 +22,6 @@ int *ft_move_b(int k)
     }
     return(mov_b);
 }
-/*
-int *ft_move_a(int k, t_list **a, t_list **b)
-{
-    int i;
-    int j;
-    //int size_a;   
-    int *mov_a;
-    t_list *tmp_a;
-    t_list *tmp_b;
-
-    //size_a = ft_list_size(*a) + 1;
-    //printf("\n***** size_a = %d *****\n",size_a);
-    //printf("\n***** size K = %d *****\n",k);
-    mov_a = malloc(sizeof(int) * k + 1);
-    tmp_a = *a;
-    tmp_b = *b;
-    i = 0;
-    j = 0;
-    //printf("\n***** Size *a = %d *****\n", ft_list_size(*a));
-    while(tmp_b)
-    {
-        while(tmp_a)
-        {
-            //printf("\n***** Valore i = %d *****\n", i);
-            if(tmp_b->content < tmp_a->content)
-            {
-                if (ft_list_size(*a) == 1)
-                {
-                    //printf("\n***** HO BRACKATO K = 1 *****\n"); 
-                    mov_a[j] = i;
-                    j++;
-                    tmp_a = *a;
-                    break;
-                }
-                else if(i < (ft_list_size(*a) / 2))
-                    mov_a[j] = i;
-                else
-                mov_a[j] = (i*-1) + (ft_list_size(*a)/2) - 1;
-                //printf("\n***** mov_a[%d] = %d - %d - 1 = %d *****\n",j, (i*2), ft_list_size(*a), ((i*2) - ft_list_size(*a) - 1));
-                //printf("\n***** mov_a[%d] = %d = %d *****\n",j, i, mov_a[j]);
-                j++;
-                tmp_a = *a;
-                break;
-            }                        
-            i++;  
-            //printf("\n***** i++; *****\n");
-            //printf("\n***** Valore i = %d *****\n", i);                      
-            //printf("\n***** Valore K = %d *****\n", k);                      
-            if(i == k && (tmp_b->content > tmp_a->content))
-            {
-                if (k == 1)
-                {
-                    //printf("\n***** HO BRACKATO K = 1 *****\n"); 
-                    mov_a[0] = 0;
-                    break;
-                }
-                else
-                {
-                    //printf("\n*****Entrato nell'if i = %d *****\n", i); 
-                    mov_a[j] = i;
-                    j++;  
-                    //printf("\n***** mov_a[%d] = %d = %d *****\n",j, i, mov_a[j]); 
-                }
-                break;
-            }
-            tmp_a = tmp_a->next;
-                      
-        } 
-        i = 0;
-        tmp_a = *a;
-        tmp_b = tmp_b->next;
-    }
-    tmp_a = *a;
-    tmp_b = *b;
-    return(mov_a);
-}*/
 
 int *ft_move_a(int k, t_list **a, t_list **b)
 {
@@ -119,15 +42,18 @@ int *ft_move_a(int k, t_list **a, t_list **b)
         {
             if(tmp_b->content < tmp_a->content)
             {
-                /*if(i < (ft_list_size(*a) / 2))
-                    mov_a[j] = i;
-                else
-                    mov_a[j] = i - ft_list_size(*a);*/
                 mov_a[j] = nextGreaterElement(a, tmp_b->content);    
                 j++;
                 tmp_a = *a;
                 break;
-            }                        
+            }
+            if((tmp_a->next == NULL) && (tmp_b->content > tmp_a->content))  
+            {
+                mov_a[j] = -1;                      
+                j++;
+                tmp_a = *a;
+                break;
+            }
             i++;            
             tmp_a = tmp_a->next;            
         } 
@@ -315,19 +241,43 @@ void    ft_move_min_max(int mov_a, int mov_b, t_list **a, t_list **b)
     pa(a, b);
     return;
 }
+void ft_escamotage(int mov_a, int i, t_list **a, t_list **b)
+{   
+    int k;
+    int mov_b;
+
+    k = ft_list_size(*b);
+
+    if(k == 1)
+        mov_b = 0;
+    else if(i < k / 2)
+        mov_b = i;
+    else
+        mov_b = i - k;
+
+    if(mov_a >= 0 && mov_b >= 0)
+        ft_move_max(mov_a, mov_b, a, b);        
+    else if(mov_a < 0 && mov_b < 0)
+        ft_move_min(mov_a, mov_b, a, b);
+    else if(mov_a >= 0 && mov_b < 0)
+        ft_move_max_min(mov_a, mov_b, a, b);
+    else if(mov_a < 0 && mov_b >= 0)
+        ft_move_min_max(mov_a, mov_b, a, b);
+    return;
+}
 void ft_movement(t_list **a, t_list **b, int k)
 {
     int *mov_b;
     int *mov_a;
     int i;
-    t_list *_a;
+    /*t_list *_a;
     t_list *_b;
 
     _a = *a;
-    _b = *b;
+    _b = *b;*/
 
     i = 0;
-    printf("\nNUMERI STACK A = ");
+    /*printf("\nNUMERI STACK A = ");
     while(_a)
     {
         printf(" %d", _a->content);
@@ -346,28 +296,27 @@ void ft_movement(t_list **a, t_list **b, int k)
         i++;
     }
     i = 0;  
-    _b = *b; 
+    _b = *b;*/
     //printf("\nLISTA A= ");
     //ft_printlist(*a);
     //printf("\nLISTA B= ");
     //ft_printlist(*b);
 
     mov_b = ft_move_b(k);
-    
+    /*if(ft_is_max(a) < ft_is_max(b))
+        ft_escamotage(-1, ft_is_max_pos(b), a, b);*/
     mov_a = ft_move_a(k, a, b);
 
-    printf("\nMOSSE mov_a = ");
+   /*printf("\nMOSSE mov_a = ");
     while(i < k)
           printf(" %d", mov_a[i++]);
     i = 0;
     printf("\nMOSSE mov_b = ");
     while(i < k)
-          printf(" %d", mov_b[i++]);
-    //printf("\n");
-    //exit(0);
+          printf(" %d", mov_b[i++]);*/
     i = 0;
     i = ft_index(k, mov_a, mov_b);
-    printf("\n***** indice mossa migliore = %d *****\n", i);
+    //printf("\n***** indice mossa migliore = %d *****\n", i);
     if(mov_a[i] >= 0 && mov_b[i] >= 0)
         ft_move_max(mov_a[i], mov_b[i], a, b);        
     else if(mov_a[i] < 0 && mov_b[i] < 0)
@@ -379,4 +328,4 @@ void ft_movement(t_list **a, t_list **b, int k)
     free(mov_a);
     free(mov_b);
     return;
-}
+} 

@@ -55,10 +55,10 @@ t_list *lis(int *v, int len)
     }
     k->content = p->val;
     k->next = NULL;
-    printf("\n\n");
-    printf("\nPRINT LIST t = ");
-    ft_printlist(t);
-    printf("\n\n");
+    //printf("\n\n");
+    //printf("\nPRINT LIST t = ");
+    //ft_printlist(t);
+    //printf("\n\n");
     //exit(0);
     return(t);
 }
@@ -82,7 +82,7 @@ void    ft_sort_lis(t_list **a, t_list **b, int size)
     tmp_b = lis(tab_1, size);
     i = 0;
     while(i < size)
-    {
+    {        
         if(tmp_b->content == (*a)->content && tmp_b->next != NULL) 
         {
             ra(a);
@@ -90,30 +90,32 @@ void    ft_sort_lis(t_list **a, t_list **b, int size)
         }
         else if(tmp_b->content == (*a)->content && tmp_b->next == NULL)
             ra(a);
-        else if (tmp_b->content != (*a)->content)
+        else if(tmp_b->content != (*a)->content)
             pb(a,b);
         i++;
     }
+    if(ft_is_max(a) < ft_is_max(b))
+            ft_escamotage(-1, ft_is_max_pos(b), a, b);
     i = 0;
-   
     //printf("\n***** DOPO IL PUSH *****");
     //printf("\nsize = %d\n", size);
-    printf("\nLISTA A= ");
+    /*printf("\nLISTA A= ");
     ft_printlist(*a);
     printf("\nLISTA B= ");
     ft_printlist(*b);
-    printf("\n\n");
+    printf("\n\n");*/
     /*if(ft_list_size(*a) < ft_list_size(*b))
         size = ft_list_size(*a);
     else*/
     size = ft_list_size(*b);
     while(size > 0)
     {
-        printf("\n****** %d *****\n", size);
+        //printf("\n****** %d *****\n", size);
         ft_movement(a, b, size);
         size--;
     }
-    tmp_a = *a;
+    
+    /*tmp_a = *a;
     tmp_b = *b;
     printf("\nNUMERI STACK A = ");
     while(tmp_a)
@@ -132,6 +134,6 @@ void    ft_sort_lis(t_list **a, t_list **b, int size)
         printf(" %d", tmp_b->content);
         tmp_b = tmp_b->next;
         i++;
-    }
-    ft_ultimate_movement(a);
+    }*/
+    //ft_ultimate_movement(a);
 }

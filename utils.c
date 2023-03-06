@@ -89,6 +89,43 @@ int     ft_is_min_pos(t_list **a)
     return (i);
 }
 
+int max_pos(t_list *tmp, int i)
+{
+    int j;
+
+    j = 0;
+    while(tmp != NULL)
+    {
+        if (i ==  tmp->content)
+            break;
+        j++;
+        tmp = tmp->next;
+    }
+    return(j);
+}
+
+int     ft_is_max_pos(t_list **a)
+{
+    t_list *tmp;
+    int result;
+	int i; 
+    
+    if(!a)
+        return 0;
+    tmp = *a;
+    i = 0;    
+	result = tmp->content;
+	while(tmp->next != NULL)
+	{
+		if (result <  tmp->next->content)
+			result = tmp->next->content;
+        tmp = tmp->next;
+	}
+    i = max_pos(*a, result);
+    tmp = *a;
+    return (i);
+}
+
 int     ft_is_max(t_list **a)
 {
     t_list *tmp;

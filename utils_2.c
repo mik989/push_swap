@@ -16,8 +16,9 @@ int nextGreaterElement(t_list **a, int n)
         }
         tmp_a = tmp_a->next;
         i++;
+        if(tmp_a->next == NULL)
+            break;
     }
-    //printf("\n***** POSIZIONE DEL NUMERO = %d *****\n", i);
     if(i < (ft_list_size(*a) / 2))
         return(i);
     else
