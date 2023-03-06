@@ -33,11 +33,9 @@ typedef struct s_list
 	struct s_list	*next;
 }t_list;
 
-int     ft_is_max_pos(t_list **a);
-void ft_escamotage(int mov_a, int i, t_list **a, t_list **b);
 int 	nextGreaterElement(t_list **a, int n);
 void    ft_ultimate_movement(t_list **a);
-int     ft_is_max(t_list **a);
+int     ft_is_max_pos(t_list **a);
 int     ft_is_min_arr(int *arr, int size);
 int     ft_is_min_arr_pos(int *arr, int size);
 void ft_printlist(t_list *o);

@@ -1,4 +1,5 @@
 #include "include/push.h"
+
 int *ft_move_b(int k)
 {
     int i;
@@ -13,7 +14,7 @@ int *ft_move_b(int k)
     while(i < k)
     {
         if(k == 1)
-           {mov_b[0] = 0;break;}
+           {mov_b[0] = 0;}
         else if(i < k / 2)
             mov_b[i] = i;
         else
@@ -47,11 +48,16 @@ int *ft_move_a(int k, t_list **a, t_list **b)
                 tmp_a = *a;
                 break;
             }
-            if((tmp_a->next == NULL) && (tmp_b->content > tmp_a->content))  
+            if((tmp_a->next == NULL) )  
             {
-                mov_a[j] = -1;                      
+                if(ft_is_max_pos(b) == 0)
+                    mov_a[j] = 0;
+                else if(ft_is_max_pos(b) < ft_list_size(*b) / 2)
+                    mov_a[j] = ft_is_max_pos(b);
+                else
+                    mov_a[j] = ft_is_max_pos(b) - ft_list_size(*b);                   
                 j++;
-                tmp_a = *a;
+                //tmp_a = *a;
                 break;
             }
             i++;            
@@ -104,7 +110,6 @@ int ft_best_mov(int size, int *mov_a, int *mov_b)
     while(i < size)
     {
         //printf("\n***** CLICLO n %d *****\n", i);
-        
         if(mov_a[i] >= 0 && mov_b[i] >= 0)
             k = ft_max(mov_a[i], mov_b[i]); 
         else if(mov_a[i] < 0 && mov_b[i] < 0)
@@ -241,30 +246,6 @@ void    ft_move_min_max(int mov_a, int mov_b, t_list **a, t_list **b)
     pa(a, b);
     return;
 }
-void ft_escamotage(int mov_a, int i, t_list **a, t_list **b)
-{   
-    int k;
-    int mov_b;
-
-    k = ft_list_size(*b);
-
-    if(k == 1)
-        mov_b = 0;
-    else if(i < k / 2)
-        mov_b = i;
-    else
-        mov_b = i - k;
-
-    if(mov_a >= 0 && mov_b >= 0)
-        ft_move_max(mov_a, mov_b, a, b);        
-    else if(mov_a < 0 && mov_b < 0)
-        ft_move_min(mov_a, mov_b, a, b);
-    else if(mov_a >= 0 && mov_b < 0)
-        ft_move_max_min(mov_a, mov_b, a, b);
-    else if(mov_a < 0 && mov_b >= 0)
-        ft_move_min_max(mov_a, mov_b, a, b);
-    return;
-}
 void ft_movement(t_list **a, t_list **b, int k)
 {
     int *mov_b;
@@ -274,10 +255,10 @@ void ft_movement(t_list **a, t_list **b, int k)
     t_list *_b;
 
     _a = *a;
-    _b = *b;*/
+    _b = *b;
 
     i = 0;
-    /*printf("\nNUMERI STACK A = ");
+    printf("\nNUMERI STACK A = ");
     while(_a)
     {
         printf(" %d", _a->content);
@@ -296,24 +277,25 @@ void ft_movement(t_list **a, t_list **b, int k)
         i++;
     }
     i = 0;  
-    _b = *b;*/
+    _b = *b; */
     //printf("\nLISTA A= ");
     //ft_printlist(*a);
     //printf("\nLISTA B= ");
     //ft_printlist(*b);
 
     mov_b = ft_move_b(k);
-    /*if(ft_is_max(a) < ft_is_max(b))
-        ft_escamotage(-1, ft_is_max_pos(b), a, b);*/
+    
     mov_a = ft_move_a(k, a, b);
 
-   /*printf("\nMOSSE mov_a = ");
+    /*printf("\nMOSSE mov_a = ");
     while(i < k)
           printf(" %d", mov_a[i++]);
     i = 0;
     printf("\nMOSSE mov_b = ");
     while(i < k)
-          printf(" %d", mov_b[i++]);*/
+          printf(" %d", mov_b[i++]);
+    //printf("\n");
+    //exit(0);*/
     i = 0;
     i = ft_index(k, mov_a, mov_b);
     //printf("\n***** indice mossa migliore = %d *****\n", i);
@@ -328,4 +310,4 @@ void ft_movement(t_list **a, t_list **b, int k)
     free(mov_a);
     free(mov_b);
     return;
-} 
+}

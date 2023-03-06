@@ -55,11 +55,11 @@ t_list *lis(int *v, int len)
     }
     k->content = p->val;
     k->next = NULL;
-    //printf("\n\n");
-    //printf("\nPRINT LIST t = ");
-    //ft_printlist(t);
-    //printf("\n\n");
-    //exit(0);
+    /*printf("\n\n");
+    printf("\nPRINT LIST t = ");
+    ft_printlist(t);
+    printf("\n\n");
+    //exit(0);*/
     return(t);
 }
 
@@ -94,9 +94,8 @@ void    ft_sort_lis(t_list **a, t_list **b, int size)
             pb(a,b);
         i++;
     }
-    if(ft_is_max(a) < ft_is_max(b))
-            ft_escamotage(-1, ft_is_max_pos(b), a, b);
     i = 0;
+   
     //printf("\n***** DOPO IL PUSH *****");
     //printf("\nsize = %d\n", size);
     /*printf("\nLISTA A= ");
@@ -114,7 +113,6 @@ void    ft_sort_lis(t_list **a, t_list **b, int size)
         ft_movement(a, b, size);
         size--;
     }
-    
     /*tmp_a = *a;
     tmp_b = *b;
     printf("\nNUMERI STACK A = ");
@@ -135,5 +133,5 @@ void    ft_sort_lis(t_list **a, t_list **b, int size)
         tmp_b = tmp_b->next;
         i++;
     }*/
-    //ft_ultimate_movement(a);
+    ft_ultimate_movement(a);
 }

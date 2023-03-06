@@ -60,11 +60,9 @@ int main (int ac, char **av)
         if (ac > 2 && ac <= 6)
            ft_sort(&a, &b, (ac - 1));
         if (ac > 6)
-        {
-            ft_sort_lis(&a, &b, (ac - 1));  
-            
-        }
-        printf("\n***** STACK A E B FINALI *****");
+            ft_sort_lis(&a, &b, (ac - 1));
+
+       /* printf("\n***** STACK A E B FINALI *****");
         printf("\nstack A = ");
         while(a != NULL )
         {
@@ -77,7 +75,7 @@ int main (int ac, char **av)
             printf("%d ", b->content);
             b = b->next;
         }
-        putchar('\n');
+        putchar('\n');*/
         ft_free_stack(a);
         ft_free_stack(b);
         ft_free_stack(new);
