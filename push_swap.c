@@ -61,8 +61,8 @@ int main (int ac, char **av)
            ft_sort(&a, &b, (ac - 1));
         if (ac > 6)
             ft_sort_lis(&a, &b, (ac - 1));
-
-       /* printf("\n***** STACK A E B FINALI *****");
+        /*
+        printf("\n***** STACK A E B FINALI *****");
         printf("\nstack A = ");
         while(a != NULL )
         {

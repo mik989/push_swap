@@ -26,48 +26,58 @@ int *ft_move_b(int k)
 
 int *ft_move_a(int k, t_list **a, t_list **b)
 {
- int i;
+    int i;
     int j;
     int *mov_a;
     t_list *tmp_a;
     t_list *tmp_b;
+    int flag;
+    int prev;
+    int c;
 
+    flag = 1;
+    i = 1;
+    j = 0;
+    c = 0;
     mov_a = malloc(sizeof(int) * k + 1);
     tmp_a = *a;
     tmp_b = *b;
-    i = 0;
-    j = 0;
     while(tmp_b)
     {
         while(tmp_a)
         {
-            if(tmp_b->content < tmp_a->content)
+            if(tmp_a->content > tmp_b->content && flag)
             {
-                mov_a[j] = nextGreaterElement(a, tmp_b->content);    
-                j++;
-                tmp_a = *a;
-                break;
+                c = i;
+                prev = tmp_a->content;
+                flag = 0;
             }
-            if((tmp_a->next == NULL) )  
+            else if(tmp_a->content > tmp_b->content && !flag)
             {
-                //mov_a[j] = nextGreaterElement(a, tmp_b->content);
-                if(ft_is_min_pos(a) == 0)
-                    mov_a[j] = 0;
-                else if(ft_is_min_pos(a) < ft_list_size(*a) / 2)
-                    mov_a[j] = ft_is_min_pos(a);
-                else
-                    mov_a[j] = ft_is_min_pos(a) - ft_list_size(*a);
-                //tmp_a = *a;
-                break;
-            }
+                if(tmp_a->content < prev)
+                {
+                    c = i;
+                    prev = tmp_a->content;
+                }
+            }            
+            tmp_a = tmp_a->next;
             i++;            
-            tmp_a = tmp_a->next;            
-        } 
-        i = 0;
-        tmp_a = *a;
+        }
+        if(c == 0)
+           c = ft_is_min_pos(a);
+        if(flag == 0)
+            c -= 1; 
+        if(c  < (ft_list_size(*a) / 2))
+            mov_a[j] = c;
+        else
+            mov_a[j] = c - ft_list_size(*a); 
+        flag = 1;
+        i = 1;
+        c = 0;
+        j++;
+        tmp_a = *a;        
         tmp_b = tmp_b->next;
     }
-    tmp_a = *a;
     tmp_b = *b;
     return(mov_a);
 }
@@ -263,7 +273,7 @@ void ft_movement(t_list **a, t_list **b, int k)
     int *mov_a;
     int i;
     
-    t_list *_a;
+    /*t_list *_a;
     t_list *_b;
 
     _a = *a;
@@ -289,7 +299,7 @@ void ft_movement(t_list **a, t_list **b, int k)
         i++;
     }
     i = 0;  
-    _b = *b; 
+    _b = *b; */
     //printf("\nLISTA A= ");
     //ft_printlist(*a);
     //printf("\nLISTA B= ");
@@ -299,13 +309,13 @@ void ft_movement(t_list **a, t_list **b, int k)
     
     mov_a = ft_move_a(k, a, b);
 
-    printf("\nMOSSE mov_a = ");
+    /*printf("\nMOSSE mov_a = ");
     while(i < k)
           printf(" %d", mov_a[i++]);
     i = 0;
     printf("\nMOSSE mov_b = ");
     while(i < k)
-          printf(" %d", mov_b[i++]);
+          printf(" %d", mov_b[i++]);*/
     //printf("\n");
     //exit(0);
     i = 0;
