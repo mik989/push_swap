@@ -33,6 +33,10 @@ typedef struct s_list
 	struct s_list	*next;
 }t_list;
 
+int    ft_sorting(int ac, t_list **a, t_list **b);
+void    ft_buildstackA(int ac, char **av, t_list **a, t_list **new);
+void    ft_checkdouble(int ac, char **av);
+void    ft_checkisnumber(char *av);
 int 	nextGreaterElement(t_list **a, int n);
 void    ft_ultimate_movement(t_list **a);
 int     ft_is_max_pos(t_list **a);

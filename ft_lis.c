@@ -36,30 +36,18 @@ t_list *lis(int *v, int len)
 	}
 	for (i = 0, p = n; i < len; i++)
 		if (n[i].len > p->len) p = n + i;
-
-	//do printf(" %d", p->val); while ((p = p->next));
-	//putchar('\n');
-    //exit(0);
     i = ft_lstlisize(p);
-    //printf("i = %d\n", i);
     k = malloc(sizeof(t_list));
     t = k;
     while(p->next)
     {
         k->content = p->val;
         k->next = malloc(sizeof(t_list));
-        //printf("k->content = %d\n", k->content);
-        //printf("p->val = %d\n", p->val);
         k = k->next;  
         p = p->next;
     }
     k->content = p->val;
     k->next = NULL;
-    /*printf("\n\n");
-    printf("\nPRINT LIST t = ");
-    ft_printlist(t);
-    printf("\n\n");
-    //exit(0);*/
     return(t);
 }
 
@@ -95,43 +83,12 @@ void    ft_sort_lis(t_list **a, t_list **b, int size)
         i++;
     }
     i = 0;
-   
-    //printf("\n***** DOPO IL PUSH *****");
-    //printf("\nsize = %d\n", size);
-    /*printf("\nLISTA A= ");
-    ft_printlist(*a);
-    printf("\nLISTA B= ");
-    ft_printlist(*b);
-    printf("\n\n");*/
-    /*if(ft_list_size(*a) < ft_list_size(*b))
-        size = ft_list_size(*a);
-    else*/
     size = ft_list_size(*b);
     while(size > 0)
     {
-       // printf("\n****** %d *****\n", size);
         ft_movement(a, b, size);
         size--;
     }
-    /*tmp_a = *a;
-    tmp_b = *b;
-    printf("\nNUMERI STACK A = ");
-    while(tmp_a)
-    {
-        printf(" %d", tmp_a->content);
-        if(tmp_a->next == NULL)
-            break;
-         tmp_a = tmp_a->next;
-        i++;
-    }
 
-    i = 0;
-    printf("\nNUMERI STACK B = ");
-    while(tmp_b)
-    {
-        printf(" %d", tmp_b->content);
-        tmp_b = tmp_b->next;
-        i++;
-    }*/
     ft_ultimate_movement(a);
 }
