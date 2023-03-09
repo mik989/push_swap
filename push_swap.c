@@ -22,4 +22,6 @@ int main (int ac, char **av)
     ft_buildstackA(ac, av, &a, &new); 
     ft_sorting(ac, &a, &b);
     ft_printlist(a);
+    ft_free_stack(a);
+    ft_free_stack(b);
 }   

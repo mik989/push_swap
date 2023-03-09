@@ -58,7 +58,7 @@ void    ft_buildstackA(int ac, char **av, t_list **a, t_list **new)
         *new = ft_lstnew(pippo);
         ft_lstadd_back(a, *new);
         i++;
-    }
+    }    
 }
 
 int    ft_sorting(int ac, t_list **a, t_list **b)

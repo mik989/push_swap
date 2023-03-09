@@ -24,15 +24,19 @@
 typedef struct node {
 	int val, len;
 	struct node *next;
-}lis_list;
+}t_lis_list;
 
 typedef struct s_list
 {
 	int			content;
     int         len;
+	int			val;
 	struct s_list	*next;
 }t_list;
 
+int	ft_lstsize(t_list *lst);
+int	ft_lissize(t_lis_list *lst);
+void    ft_free_lisstack(t_lis_list *start);
 int    ft_sorting(int ac, t_list **a, t_list **b);
 void    ft_buildstackA(int ac, char **av, t_list **a, t_list **new);
 void    ft_checkdouble(int ac, char **av);
@@ -43,7 +47,6 @@ int     ft_is_max_pos(t_list **a);
 int     ft_is_min_arr(int *arr, int size);
 int     ft_is_min_arr_pos(int *arr, int size);
 void ft_printlist(t_list *o);
-int	ft_lstlisize(lis_list *lst);
 void ft_movement(t_list **a, t_list **b, int k);
 void    ft_sort_lis(t_list **a, t_list **b, int size);
 void    ft_free_stack(t_list *start);

@@ -39,7 +39,7 @@ int *ft_move_a(int k, t_list **a, t_list **b)
     i = 1;
     j = 0;
     c = 0;
-    mov_a = malloc(sizeof(int) * k + 1);
+    mov_a = calloc(sizeof(int), k);
     tmp_a = *a;
     tmp_b = *b;
     while(tmp_b)

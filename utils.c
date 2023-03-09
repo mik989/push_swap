@@ -105,3 +105,17 @@ void    ft_free_stack(t_list *start)
 		i = next;
 	}
 }
+void    ft_free_lisstack(t_lis_list *start)
+{
+	t_lis_list	*i;
+	t_lis_list	*next;
+
+	i = start;
+	next = NULL;
+	while (i)
+	{
+		next = i->next;
+		free(i);
+		i = next;
+	}
+}

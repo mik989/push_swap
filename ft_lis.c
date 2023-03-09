@@ -13,43 +13,96 @@ void ft_printlist(t_list *o)
             break;  
     }
 }
-
-t_list *lis(int *v, int len)
+void ft_printval(t_list *o)
 {
-	int i;
-	lis_list *p; 
-    lis_list *n = calloc(sizeof(lis_list), len);
-    t_list *k;
-    t_list *t;
+    t_list *p;
 
+    p = o;
     
-	for (i = 0; i < len; i++)
-		n[i].val = v[i];
-
-	for (i = len; i--; ) {
-		for (p = n + i; p++ < n + len; ) {
-			if (p->val > n[i].val && p->len >= n[i].len) {
-				n[i].next = p;
-				n[i].len = p->len + 1;
-			}
-		}
-	}
-	for (i = 0, p = n; i < len; i++)
-		if (n[i].len > p->len) p = n + i;
-    i = ft_lstlisize(p);
-    k = malloc(sizeof(t_list));
-    t = k;
-    while(p->next)
+    while(p != NULL)
     {
-        k->content = p->val;
-        k->next = malloc(sizeof(t_list));
-        k = k->next;  
+        printf(" %d", p->val);
         p = p->next;
+        if (!p)
+            break;  
     }
-    k->content = p->val;
-    k->next = NULL;
-    return(t);
 }
+
+void free_list(t_list *head) {
+    while (head != NULL) {
+        t_list *tmp = head;
+        head = head->next;
+        free(tmp);
+    }
+}
+
+t_list	*lis(int *v, int len)
+{
+	int		*dp;
+	t_list	*new_node;
+	t_list	*result;
+	int		i;
+	int		j;
+	int		max_len;
+
+	dp = (int *)malloc(sizeof(int) * len);
+	if (!dp)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		dp[i] = 1;
+		i++;
+	}
+	i = 1;
+	while (i < len)
+	{
+		j = 0;
+		while (j < i)
+		{
+			if (v[j] < v[i] && dp[j] + 1 > dp[i])
+				dp[i] = dp[j] + 1;
+			j++;
+		}
+		i++;
+	}
+	max_len = 0;
+	i = 0;
+	while (i < len)
+	{
+		if (dp[i] > max_len)
+			max_len = dp[i];
+		i++;
+	}
+	result = NULL;
+	i = len - 1;
+	while (i >= 0 && max_len > 0)
+	{
+		if (dp[i] == max_len) 
+		{
+			new_node = (t_list *)malloc(sizeof(t_list));
+			if (!new_node)
+			{
+				while (result)
+				{
+					new_node = result->next;
+					free(result);
+					result = new_node;
+				}
+				free(dp);
+				return (NULL);
+			}
+			new_node->val = v[i];
+			new_node->next = result;
+			result = new_node;
+			max_len--;
+		}
+		i--;
+	}
+	free(dp);
+	return (result);
+}
+
 
 void    ft_sort_lis(t_list **a, t_list **b, int size)
 {
@@ -57,6 +110,7 @@ void    ft_sort_lis(t_list **a, t_list **b, int size)
     int *tab_1;
     t_list *tmp_a;
     t_list *tmp_b;
+    t_list *tmp_c;
 
     tmp_a = *a;
     i = 0;
@@ -67,21 +121,26 @@ void    ft_sort_lis(t_list **a, t_list **b, int size)
         i++;
         tmp_a = tmp_a->next;
     }
+
     tmp_b = lis(tab_1, size);
+    tmp_c = tmp_b;
     i = 0;
     while(i < size)
     {        
-        if(tmp_b->content == (*a)->content && tmp_b->next != NULL) 
+        if(tmp_b->val == (*a)->content && tmp_b->next != NULL) 
         {
             ra(a);
             tmp_b = tmp_b->next; 
         }
-        else if(tmp_b->content == (*a)->content && tmp_b->next == NULL)
+        else if(tmp_b->val == (*a)->content && tmp_b->next == NULL)
             ra(a);
-        else if(tmp_b->content != (*a)->content)
+        else if(tmp_b->val != (*a)->content)
             pb(a,b);
         i++;
-    }
+    } 
+    tmp_b = tmp_c;
+    free(tab_1);
+    free_list(tmp_b);
     i = 0;
     size = ft_list_size(*b);
     while(size > 0)

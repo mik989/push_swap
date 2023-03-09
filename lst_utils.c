@@ -56,8 +56,7 @@ int	ft_lstsize(t_list *lst)
 	}
 	return (i);
 }
-
-int	ft_lstlisize(lis_list *lst)
+int	ft_lissize(t_lis_list *lst)
 {
 	int	i;
 

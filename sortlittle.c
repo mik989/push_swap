@@ -13,21 +13,14 @@ int ft_list_size(t_list *lst)
 	return (size);
 }
 
-int	ft_is_ordered(t_list *a)
-{
-	t_list *tmp;
-	tmp = a;
-	while(a != NULL)
-	{
-		if(a->next != NULL)
-			{
-				if(a->content > a->next->content)
-					return (0);
-			}		
-		a = a->next;
-	}
-	free(tmp);
-	return (1);
+int ft_is_ordered(t_list *a) {
+    while (a != NULL && a->next != NULL) {
+        if (a->content > a->next->content) {
+            return 0;
+        }
+        a = a->next;
+    }
+    return 1;
 }
 
 void	ft_sort_2(t_list **a)
