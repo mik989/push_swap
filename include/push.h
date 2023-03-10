@@ -34,6 +34,7 @@ typedef struct s_list
 	struct s_list	*next;
 }t_list;
 
+char **ft_strcheck(int ac, char **av);
 void    ft_init_flag(t_list *op);
 void	free_list(t_list *head);
 int		*fill_array(int len);

@@ -6,20 +6,20 @@ int	main(int ac, char **av)
 	t_list	*a;
 	t_list	*new;
 	int		j;
-
+	char **str;
 	j = 1;
 	a = NULL;
 	new = NULL;
 	b = NULL;
-	if (ac == 1)
-		return (0);
+	
+	str = ft_strcheck(ac, av);
 	while (j < ac)
 	{
-		ft_checkisnumber(av[j]);
+		ft_checkisnumber(str[j]);
 		j++;
 	}
-	ft_checkdouble(ac, av);
-	ft_buildstacka(ac, av, &a, &new);
+	ft_checkdouble(ac, str);
+	ft_buildstacka(ac, str, &a, &new);
 	ft_sorting(ac, &a, &b);
 	ft_printlist(a);
 	ft_free_stack(a);

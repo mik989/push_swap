@@ -73,3 +73,11 @@ int	ft_sorting(int ac, t_list **a, t_list **b)
 		ft_sort_lis(a, b, (ac - 1));
 	return (0);
 }
+char **ft_strcheck(int ac, char **av)
+{
+	if (ac == 1)
+		return (NULL);
+	if (ac == 2)
+		return(ft_split(av[1], ' '));
+	return (av);
+}
