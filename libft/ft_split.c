@@ -39,7 +39,7 @@ static char	*word_str(const char *s, int start, int finish)
 	char	*str;
 
 	i = 0;
-	str = malloc((finish - start + 1) * sizeof(char));
+	str = malloc(sizeof(char) * (finish - start + 1));
 	while (start < finish)
 		str[i++] = s[start++];
 	str[i] = '\0';
@@ -53,11 +53,12 @@ char	**ft_split(const char *s, char c)
 	char	**arr;
 	int		index;
 
-	arr = malloc((count_words(s, c) + 1) * sizeof(char *));
+	arr = calloc(sizeof(char *), (count_words(s, c) + 2));
 	if (!s || !arr)
-		return (0);
+		return (NULL);
+	arr[0] = "a";
 	i = 0;
-	k = 0;
+	k = 1;
 	index = -1;
 	while (i <= ft_strlen(s))
 	{
@@ -70,6 +71,6 @@ char	**ft_split(const char *s, char c)
 		}
 		i++;
 	}
-	arr[k] = 0;
+	arr[k] = NULL;
 	return (arr);
 }

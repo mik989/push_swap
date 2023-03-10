@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lst_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/10 11:46:19 by mgirardi          #+#    #+#             */
+/*   Updated: 2023/03/10 11:46:20 by mgirardi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "include/push.h"
 
-void ft_lstdsp(t_list *lst)
+void	ft_lstdsp(t_list *lst)
 {
-        while (lst)
-        {
-          printf("%d\n", lst->content);
-          lst = lst->next;
-        }
+	while (lst)
+	{
+		printf("%d\n", lst->content);
+		lst = lst->next;
+	}
 }
 
 t_list	*ft_lstnew(int content)
@@ -56,4 +68,3 @@ int	ft_lstsize(t_list *lst)
 	}
 	return (i);
 }
-

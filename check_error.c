@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_error.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/10 11:47:13 by mgirardi          #+#    #+#             */
+/*   Updated: 2023/03/10 11:47:14 by mgirardi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "include/push.h"
 
-void	ft_checkisnumber(char *av)
+void	ft_checkisnumber(char *av, char **str, int free)
 {
 	int	i;
 	int	flag;
@@ -20,11 +32,13 @@ void	ft_checkisnumber(char *av)
 	if (flag > 1 || !isnum)
 	{
 		write (2, "Error\n", 6);
+		if (free == 1)
+			ft_free_mat(str);
 		exit (0);
 	}
 }
 
-void	ft_checkdouble(int ac, char **av)
+void	ft_checkdouble(int ac, char **av, int free)
 {
 	int	j;
 	int	i;
@@ -38,6 +52,8 @@ void	ft_checkdouble(int ac, char **av)
 			if (atoi(av[j]) == atoi(av[i++]))
 			{
 				write (2, "Error\n", 6);
+				if (free == 1)
+					ft_free_mat(av);
 				exit (0);
 			}
 		}
@@ -73,11 +89,8 @@ int	ft_sorting(int ac, t_list **a, t_list **b)
 		ft_sort_lis(a, b, (ac - 1));
 	return (0);
 }
-char **ft_strcheck(int ac, char **av)
+
+char	**ft_strcheck(char **av)
 {
-	if (ac == 1)
-		return (NULL);
-	if (ac == 2)
-		return(ft_split(av[1], ' '));
-	return (av);
+	return (ft_split(av[1], ' '));
 }

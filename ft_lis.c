@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lis.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/10 11:46:58 by mgirardi          #+#    #+#             */
+/*   Updated: 2023/03/10 11:46:59 by mgirardi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "include/push.h"
 
 t_list	*fill_node(int *v, int *dp, int max_len)
@@ -56,7 +68,7 @@ int	*ft_cpstacktoarray(t_list **a, int size)
 
 	i = 0;
 	tmp_a = *a;
-	tab_1 = malloc(sizeof(int) * size);
+	tab_1 = malloc(sizeof(int) * size + 1);
 	while (tmp_a != NULL)
 	{
 		tab_1[i] = tmp_a->content;
@@ -86,7 +98,6 @@ void	ft_fill_stack_b(t_list **a, t_list **b, t_list *tmp, int size)
 			pb(a, b);
 		i++;
 	}
-	free_list(tmp);
 }
 
 void	ft_sort_lis(t_list **a, t_list **b, int size)
@@ -100,6 +111,7 @@ void	ft_sort_lis(t_list **a, t_list **b, int size)
 	tmp_c = tmp_b;
 	ft_fill_stack_b(a, b, tmp_b, size);
 	tmp_b = tmp_c;
+	free(tmp_b);
 	free(tab_1);
 	size = ft_list_size(*b);
 	while (size > 0)

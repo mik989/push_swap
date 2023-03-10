@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   array_lis.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/10 11:45:01 by mgirardi          #+#    #+#             */
+/*   Updated: 2023/03/10 11:45:03 by mgirardi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "include/push.h"
 
 int	*fill_array(int len)
@@ -11,13 +23,12 @@ int	*fill_array(int len)
 		return (NULL);
 	while (i < len)
 		dp[i++] = 1;
-	
 	return (dp);
 }
 
 int	*refill_array(int *v, int *dp, int len)
 {
-	int i;
+	int	i;
 	int	j;
 
 	j = 0;
@@ -39,7 +50,7 @@ int	*refill_array(int *v, int *dp, int len)
 int	ft_max_len(int *dp, int len)
 {
 	int	i;
-	int max_len;
+	int	max_len;
 
 	max_len = 0;
 	i = 0;

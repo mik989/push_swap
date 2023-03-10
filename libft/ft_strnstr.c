@@ -22,9 +22,8 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	j = 0;
 	x = ft_strlen(little);
 	if (!big || !little)
-	if (x == 0 || little == NULL)
-                return ((char *)big);
-
+		if (x == 0 || little == NULL)
+			return ((char *)big);
 	while ((little[j] != '\0' && big[i] != '\0') && i < len)
 	{
 		if (little[j] == big[i])
@@ -37,15 +36,4 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 		return ((char *)&big[i - j]);
 	else
 		return (0);
-}
-
-int	main(int ac, char **av)
-{
-	if (ac != 3)
-		return 0;
-	char *result;
-       	result = malloc(20 * sizeof(char));
-	result = ft_strnstr(av[1], av[2], atoi(av[3]));
-	printf("%s \n", result);
-	return (0);
 }

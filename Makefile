@@ -2,9 +2,9 @@ NAME		=	push_swap
 
 NAME_BONUS	=	checker
 
-SRC			=	push_swap.c ft_push.c ft_reverse.c ft_rotate.c ft_swap.c lst_utils.c ft_lis.c sortlittle.c utils.c movement.c utils_2.c ft_ultimate_movement.c check_error.c array_lis.c
+SRC			=	push_swap.c ft_push.c ft_reverse.c ft_rotate.c ft_swap.c lst_utils.c ft_lis.c sortlittle.c utils.c movement.c utils_2.c ft_ultimate_movement.c check_error.c array_lis.c movement_utils.c movement_utils_2.c ft_pos.c
 
-SRC_BONUS	=	
+SRC_BONUS	=	checker.c
 
 LIBFT		=	libft/libft.a
 
@@ -34,7 +34,7 @@ fclean: 	clean
 			${RM} $(NAME) $(NAME_BONUS) ${OBJ} $(OBJ_BONUS)
 			@echo File .o e libreria rimossi!
 
-re:			fclean bonus
+re:			fclean all
 
 bonus:		all $(OBJ_BONUS)
 			$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJ_BONUS) $(LIBFT)

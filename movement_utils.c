@@ -1,43 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rotate.c                                        :+:      :+:    :+:   */
+/*   movement_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/10 11:44:26 by mgirardi          #+#    #+#             */
-/*   Updated: 2023/03/10 11:44:29 by mgirardi         ###   ########.fr       */
+/*   Created: 2023/03/10 11:46:01 by mgirardi          #+#    #+#             */
+/*   Updated: 2023/03/10 11:46:03 by mgirardi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/push.h"
 
-void	ft_rotlst(t_list **lst)
+int	ft_max(int mov_a, int mov_b)
 {
-	t_list	*tmp;
-
-	tmp = *lst;
-	*lst = ft_lstlast(*lst);
-	(*lst)->next = tmp;
-	*lst = tmp->next;
-	tmp->next = NULL;
+	if (mov_a > mov_b)
+		return (mov_a);
+	return (mov_b);
 }
 
-void	ra(t_list **a)
+int	ft_min(int mov_a, int mov_b)
 {
-	ft_rotlst(a);
-	write(1, "ra\n", 3);
+	if (mov_a < mov_b)
+		return (mov_a * -1);
+	return (mov_b * -1);
 }
 
-void	rb(t_list **b)
+int	ft_abs_b(int mov_a, int mov_b)
 {
-	ft_rotlst(b);
-	write(1, "rb\n", 3);
+	mov_b *= -1;
+	return (mov_a + mov_b);
 }
 
-void	rr(t_list **a, t_list **b)
+int	ft_abs_a(int mov_a, int mov_b)
 {
-	ft_rotlst(a);
-	ft_rotlst(b);
-	write(1, "rr\n", 3);
+	mov_a *= -1;
+	return (mov_a + mov_b);
 }
