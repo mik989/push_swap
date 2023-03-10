@@ -26,59 +26,30 @@ int *ft_move_b(int k)
 
 int *ft_move_a(int k, t_list **a, t_list **b)
 {
-    int i;
-    int j;
     int *mov_a;
-    t_list *tmp_a;
-    t_list *tmp_b;
-    int flag;
-    int prev;
-    int c; 
+    t_list  *tmp_b;
+    t_list  *op;
 
-    flag = 1;
-    i = 1;
-    j = 0;
-    c = 0;
+    op = calloc(sizeof(t_list), 1);
+    ft_init_flag(op);
     mov_a = calloc(sizeof(int), k);
-    tmp_a = *a;
     tmp_b = *b;
     while(tmp_b)
     {
-        while(tmp_a)
-        {
-            if(tmp_a->content > tmp_b->content && flag)
-            {
-                c = i;
-                prev = tmp_a->content;
-                flag = 0;
-            }
-            else if(tmp_a->content > tmp_b->content && !flag)
-            {
-                if(tmp_a->content < prev)
-                {
-                    c = i;
-                    prev = tmp_a->content;
-                }
-            }            
-            tmp_a = tmp_a->next;
-            i++;            
-        }
-        if(c == 0)
-           c = ft_is_min_pos(a);
-        if(flag == 0)
-            c -= 1; 
-        if(c  < (ft_list_size(*a) / 2))
-            mov_a[j] = c;
+        nextgreaterelement(a, op, tmp_b->content);
+        if(op->c == 0)
+           op->c = ft_is_min_pos(a);
+        if(op->flag == 0)
+            op->c -= 1; 
+        if(op->c < (ft_list_size(*a) / 2))
+            mov_a[op->j] = op->c;
         else
-            mov_a[j] = c - ft_list_size(*a); 
-        flag = 1;
-        i = 1;
-        c = 0;
-        j++;
-        tmp_a = *a;        
+            mov_a[op->j] = op->c - ft_list_size(*a); 
+        ft_init_flag(op);
+        op->j++;   
         tmp_b = tmp_b->next;
     }
-    tmp_b = *b;
+    free(op);
     return(mov_a);
 }
 

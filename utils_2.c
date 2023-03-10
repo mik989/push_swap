@@ -1,79 +1,72 @@
 #include "include/push.h"
 
-int nextGreaterElement(t_list **a, int n)
+void	ft_init_flag(t_list *op)
 {
-    t_list *tmp_a;
-    int i;
-    int flag;
-    int prev;
-    int c;
-
-    flag = 1;
-    i = 1;
-    c = 0;
-    tmp_a = *a;
-    while(tmp_a)
-    {
-        if(tmp_a->content > n && flag)
-        {
-        c = i;
-        prev = tmp_a->content;
-        flag = 0;
-        }
-        else if(tmp_a->content > n && !flag)
-        {
-            if(tmp_a->content < prev)
-            {
-                c = i;
-                prev = tmp_a->content;
-            }
-        }
-        tmp_a = tmp_a->next;
-        i++;
-    }
-    
-    if(c == 0)
-    {
-        return(ft_is_min_pos(a));
-    }
-    if((c - 1) < (ft_list_size(*a) / 2))
-        return(c - 1);
-    else
-        return(c - 1 - ft_list_size(*a));
+	op->flag = 1;
+	op->i = 1;
+	op->c = 0;
+	return ;
 }
 
-/*
-int nextGreaterElement(t_list **a, int n)
+void	nextgreaterelement(t_list **a, t_list *op, int n)
 {
-  t_list *tmp_a;
-    int i;
-    int flag;
+	t_list	*tmp_a;
 
-    flag = 0;
-    i = 0;
-    tmp_a = *a;
-    while(tmp_a)
-    {
-        i++;
-        if((n > tmp_a->content) && (n < tmp_a->next->content))        
-        {
-            flag = 1;
-            break;
-        }
-        tmp_a = tmp_a->next;
-        if(tmp_a->next == NULL)
-            break;      
-    }
-    //return(i+1);
-    //printf("\n***** POSIZIONE DEL NUMERO = %d *****\n", i);
-    if(flag == 0)
-        {
-            i = ft_is_min_pos(a);
-            //printf("\n***** VALORE N = %d *****\n", n);
-            //printf("\n***** VALORE MIN_POS = %d *****\n", i);
-        }
-    if(i < (ft_list_size(*a) / 2))
-        return(i);
-    else
-        return(i - ft_list_size(*a));
-}*/
+	tmp_a = *a;
+	while (tmp_a)
+	{
+		if (tmp_a->content > n && op->flag)
+		{
+			op->c = op->i;
+			op->prev = tmp_a->content;
+			op->flag = 0;
+		}
+		else if (tmp_a->content > n && !op->flag)
+		{
+			if (tmp_a->content < op->prev)
+			{
+				op->c = op->i;
+				op->prev = tmp_a->content;
+			}
+		}
+		tmp_a = tmp_a->next;
+		op->i++;
+	}
+}
+
+void	ft_printlist(t_list *o)
+{
+	t_list	*p;
+
+	p = o;
+	while (p != NULL)
+	{
+		printf(" %d", p->content);
+		p = p->next;
+		if (!p)
+			break ;
+	}
+}
+
+void	free_list(t_list *head)
+{
+	t_list	*tmp;
+
+	while (head != NULL)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
+}
+
+int	ft_is_ordered(t_list *a)
+{
+	while (a != NULL && a->next != NULL)
+	{
+		if (a->content > a->next->content)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}

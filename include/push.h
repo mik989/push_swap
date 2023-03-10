@@ -21,46 +21,49 @@
 # include <string.h>
 # include <unistd.h>
 
-typedef struct node {
-	int val, len;
-	struct node *next;
-}t_lis_list;
-
 typedef struct s_list
 {
-	int			content;
-    int         len;
-	int			val;
+	int				content;
+	int				len;
+	int				val;
+	int				i;
+    int				j;
+    int				flag;
+    int				prev;
+    int 			c;
 	struct s_list	*next;
 }t_list;
 
-int	ft_lstsize(t_list *lst);
-int	ft_lissize(t_lis_list *lst);
-void    ft_free_lisstack(t_lis_list *start);
-int    ft_sorting(int ac, t_list **a, t_list **b);
-void    ft_buildstackA(int ac, char **av, t_list **a, t_list **new);
-void    ft_checkdouble(int ac, char **av);
-void    ft_checkisnumber(char *av);
-int 	nextGreaterElement(t_list **a, int n);
-void    ft_ultimate_movement(t_list **a);
-int     ft_is_max_pos(t_list **a);
-int     ft_is_min_arr(int *arr, int size);
-int     ft_is_min_arr_pos(int *arr, int size);
-void ft_printlist(t_list *o);
-void ft_movement(t_list **a, t_list **b, int k);
-void    ft_sort_lis(t_list **a, t_list **b, int size);
-void    ft_free_stack(t_list *start);
-void    ft_butta_su(t_list **a, int i);
-void    ft_butta_giu(t_list **a, int i);
-int     min_pos(t_list *tmp, int i);
-int     ft_is_min_pos(t_list **a);
-void    ft_push_min_a(t_list **a, t_list **b);
-void    ft_lstdsp(t_list *lst);
+void    ft_init_flag(t_list *op);
+void	free_list(t_list *head);
+int		*fill_array(int len);
+int		*refill_array(int *v, int *dp, int len);
+int		ft_max_len(int *dp, int len);
+int		ft_lstsize(t_list *lst);
+int		ft_sorting(int ac, t_list **a, t_list **b);
+void	ft_buildstacka(int ac, char **av, t_list **a, t_list **new);
+void	ft_checkdouble(int ac, char **av);
+void	ft_checkisnumber(char *av);
+void		nextgreaterelement(t_list **a, t_list *op, int n);
+void	ft_ultimate_movement(t_list **a);
+int		ft_is_max_pos(t_list **a);
+int		ft_is_min_arr(int *arr, int size);
+int		ft_is_min_arr_pos(int *arr, int size);
+void	ft_printlist(t_list *o);
+void	ft_movement(t_list **a, t_list **b, int k);
+void	ft_sort_lis(t_list **a, t_list **b, int size);
+void	ft_free_stack(t_list *start);
+void	ft_butta_su(t_list **a, int i);
+void	ft_butta_giu(t_list **a, int i);
+int		min_pos(t_list *tmp, int i);
+int		ft_is_min_pos(t_list **a);
+void	ft_push_min_a(t_list **a, t_list **b);
+void	ft_lstdsp(t_list *lst);
 t_list	*ft_lstnew(int content);
-int     ft_list_size(t_list *lst);
-int     ft_is_ordered(t_list *a);
+int		ft_list_size(t_list *lst);
+int		ft_is_ordered(t_list *a);
 void	ft_sort(t_list **a, t_list **b, int size);
-int     *ft_lis_algo(int *array, int size);
+int		*ft_lis_algo(int *array, int size);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	pa(t_list **stack_a, t_list **stack_b);
