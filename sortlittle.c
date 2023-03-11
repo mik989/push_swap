@@ -84,7 +84,7 @@ void	ft_sort(t_list **a, t_list **b, int size)
 		ft_sort_3(a);
 	if (size == 4)
 	{
-		ft_push_min_a(a, b);
+		push_min(a, b);
 		ft_sort_3(a);
 		pa(a, b);
 	}
@@ -92,7 +92,7 @@ void	ft_sort(t_list **a, t_list **b, int size)
 	{
 		i = 2;
 		while (i--)
-			ft_push_min_a(a, b);
+			push_min(a, b);
 		ft_sort_3(a);
 		pa(a, b);
 		pa(a, b);

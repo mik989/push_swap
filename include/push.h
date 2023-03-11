@@ -34,6 +34,8 @@ typedef struct s_list
 	struct s_list	*next;
 }t_list;
 
+int	is_min(t_list *a);
+void	push_min(t_list **a, t_list **b);
 void	ft_free_mat(char **str);
 int		ft_best_mov(int size, int *mov_a, int *mov_b);
 int		ft_best_mov2(int mov_a, int mov_b);
