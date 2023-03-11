@@ -1,4 +1,3 @@
-
 #include "include/push.h"
 
 long	ft_atox(char *str)

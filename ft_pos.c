@@ -70,3 +70,45 @@ int	ft_is_max_pos(t_list **a)
 	tmp = *a;
 	return (i);
 }
+
+int	is_min(t_list *a)
+{
+	int		min;
+	t_list	*node;
+	t_list	*temp;
+
+	node = a;
+	temp = node->next;
+	while (temp)
+	{
+		while ((temp) && (node->content < temp->content))
+			temp = temp->next;
+		if (temp != NULL)
+		{
+			node = temp;
+			temp = temp->next;
+		}
+	}
+	min = node->content;
+	return (min);
+}
+
+int	find_min_pos(t_list *a)
+{
+	int		i;
+	t_list	*last;
+
+	last = ft_lstlast(a);
+	i = 0;
+	if (last == NULL)
+		return (0);
+	if (last->content == is_min(a))
+		return (ft_list_size(a));
+	while ((a->content != is_min(a)) && (a != NULL))
+	{
+		a = a->next;
+		i++;
+	}
+	i++;
+	return (i);
+}
