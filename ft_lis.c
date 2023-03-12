@@ -12,43 +12,14 @@
 
 #include "include/push.h"
 
-t_node *fill_chain(int len, int *v)
+t_node	*lis(int *v, int len)
 {
-	int	i;
-	t_node *n;
+	int		i;
+	t_node	*p;
+	t_node	*n;
 
-	n = calloc(sizeof *n, len + 1);
-	i = 0;
-	while (i < len)
-	{
-		n[i].val = v[i];
-		i++;
-	}
-	return (n);
-}
-
-t_node	*find_long_chain(int len, t_node *n, t_node *p)
-{
-	int	i;
-
-	i = 0;
-	while (i < len)
-	{
-		if (n[i].len > p->len) 
-			p = n + i;
-		i++;
-	}
-	return (p);
-}
-
-t_node *lis(int *v, int len)
-{
-	int i;
-	t_node *p;
-	t_node *n;
-	
 	n = fill_chain(len, v);
-	i = len; 
+	i = len;
 	while (i--)
 	{
 		p = n + i;
@@ -64,7 +35,7 @@ t_node *lis(int *v, int len)
 	i = 0;
 	p = n;
 	p = find_long_chain(len, n, p);
-	return(n);
+	return (n);
 }
 
 int	*ft_cpstacktoarray(t_list **a, int size)

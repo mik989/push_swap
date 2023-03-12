@@ -23,7 +23,7 @@ t_list	*lis_old(int *v, int len)
 	tmp = NULL;
 	next = NULL;
 	i = 0;
-	while(len--)
+	while (len--)
 	{
 		next = (t_list *)malloc(sizeof(t_list));
 		next->val = v[i++];
@@ -35,4 +35,33 @@ t_list	*lis_old(int *v, int len)
 		tmp = next;
 	}
 	return (start);
+}
+
+t_node	*fill_chain(int len, int *v)
+{
+	int		i;
+	t_node	*n;
+
+	n = calloc(sizeof(*n), len + 1);
+	i = 0;
+	while (i < len)
+	{
+		n[i].val = v[i];
+		i++;
+	}
+	return (n);
+}
+
+t_node	*find_long_chain(int len, t_node *n, t_node *p)
+{
+	int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		if (n[i].len > p->len)
+			p = n + i;
+		i++;
+	}
+	return (p);
 }
