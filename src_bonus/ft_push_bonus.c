@@ -10,7 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push.h"
+#include "../include/push_bonus.h"
+
+void	push_a(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*tmp;
+
+	if (!*stack_b)
+		return ;
+	tmp = *stack_a;
+	*stack_a = *stack_b;
+	*stack_b = (*stack_b)->next;
+	(*stack_a)->next = tmp;
+}
+
+void	push_b(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*tmp;
+
+	if (!*stack_a)
+		return ;
+	tmp = *stack_b;
+	*stack_b = *stack_a;
+	*stack_a = (*stack_a)->next;
+	(*stack_b)->next = tmp;
+}
 
 void	pa(t_list **stack_a, t_list **stack_b)
 {

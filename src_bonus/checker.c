@@ -1,4 +1,16 @@
-#include "include/push.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/12 15:39:01 by mgirardi          #+#    #+#             */
+/*   Updated: 2023/03/12 15:39:05 by mgirardi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/push_bonus.h"
 
 void	ft_display_exit(void)
 {
@@ -9,13 +21,19 @@ void	ft_display_exit(void)
 void	exec_check(t_list **a, t_list **b, char *str)
 {
 	if (ft_strncmp(str, "rr\n", 3) == 0)
-		rr(a, b);
+	{
+		ft_rotlst(a);
+		ft_rotlst(b);
+	}
 	else if (ft_strncmp(str, "rra\n", 4) == 0)
-		rr_a(a);
+		ft_revlst(a);
 	else if (ft_strncmp(str, "rrb\n", 4) == 0)
-		rr_b(b);
+		ft_revlst(b);
 	else if (ft_strncmp(str, "rrr\n", 4) == 0)
-		rrr(a, b);
+	{
+		ft_revlst(a);
+		ft_revlst(b);
+	}
 	else
 		ft_display_exit();
 }
@@ -25,19 +43,22 @@ void	ft_exec_sort(t_list **a, t_list **b, char *str)
 	while (str != NULL)
 	{
 		if (ft_strncmp(str, "sa\n", 3) == 0)
-			sw_a(a);
+			swap(a);
 		else if (ft_strncmp(str, "sb\n", 3) == 0)
-			sw_b(b);
+			swap(b);
 		else if (ft_strncmp(str, "ss\n", 3) == 0)
-			ss(a, b);
+		{
+			swap(a);
+			swap(b);
+		}
 		else if (ft_strncmp(str, "pa\n", 3) == 0)
 			push_a(a, b);
 		else if (ft_strncmp(str, "pb\n", 3) == 0)
 			push_b(a, b);
 		else if (ft_strncmp(str, "ra\n", 3) == 0)
-			rot_a(a);
+			ft_rotlst(a);
 		else if (ft_strncmp(str, "rb\n", 3) == 0)
-			rot_b(b);
+			ft_rotlst(b);
 		else
 			exec_check(a, b, str);
 		free(str);
@@ -68,22 +89,25 @@ int	main(int ac, char **av)
 	t_list	*check_a;
 	t_list	*check_b;
 	t_list	*new;
+	int		j;
 	char	*str;
 
-	a = NULL;
-	b = NULL;
+	j = 1;
+	check_a = NULL;
+	check_b = NULL;
 	if (ac < 2)
 		return (0);
-	else
+	while (j < ac)
 	{
-		if (check_args(ac, av))
-			ft_display_exit();
+		ft_checkisnumber(av[j]);
+		j++;
 	}
+	ft_checkdouble(ac, av);
 	ft_buildstacka(ac, av, &check_a, &new);
 	str = get_next_line(0);
 	ft_exec_sort(&check_a, &check_b, str);
 	ft_check_sort(check_a, check_b);
-	ft_free_stack(check_a);
-	ft_free_stack(check_b);
+	free_stack(check_a);
+	free_stack(check_b);
 	return (0);
 }

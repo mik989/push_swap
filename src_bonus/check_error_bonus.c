@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_error.c                                      :+:      :+:    :+:   */
+/*   check_error_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:47:13 by mgirardi          #+#    #+#             */
-/*   Updated: 2023/03/10 11:47:14 by mgirardi         ###   ########.fr       */
+/*   Updated: 2023/03/12 16:58:26 by mgirardi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push.h"
+#include "../include/push_bonus.h"
 
-void	ft_checkisnumber(char *av, char **str, int free)
+void	ft_checkisnumber(char *av)
 {
 	int	i;
 	int	flag;
@@ -21,6 +21,7 @@ void	ft_checkisnumber(char *av, char **str, int free)
 	isnum = 1;
 	flag = 0;
 	i = 0;
+	check_long_int(av);
 	while (av[i])
 	{
 		if (av[i] == '+' || av[i] == '-')
@@ -32,13 +33,11 @@ void	ft_checkisnumber(char *av, char **str, int free)
 	if (flag > 1 || !isnum)
 	{
 		write (2, "Error\n", 6);
-		if (free == 1)
-			ft_free_mat(str);
 		exit (0);
-	}
+	}		
 }
 
-void	ft_checkdouble(int ac, char **av, int free)
+void	ft_checkdouble(int ac, char **av)
 {
 	int	j;
 	int	i;
@@ -49,11 +48,9 @@ void	ft_checkdouble(int ac, char **av, int free)
 	{
 		while (av[j] && (i < ac))
 		{
-			if (atoi(av[j]) == atoi(av[i++]))
+			if (ft_atoi(av[j]) == ft_atoi(av[i++]))
 			{
 				write (2, "Error\n", 6);
-				if (free == 1)
-					ft_free_mat(av);
 				exit (0);
 			}
 		}
@@ -70,27 +67,10 @@ void	ft_buildstacka(int ac, char **av, t_list **a, t_list **new)
 	i = 1;
 	while (i < ac)
 	{
-		pippo = atoi(av[i]);
+		pippo = ft_atoi(av[i]);
 		*new = ft_lstnew(pippo);
 		ft_lstadd_back(a, *new);
 		i++;
 	}
 }
 
-int	ft_sorting(int ac, t_list **a, t_list **b)
-{
-	if (ft_is_ordered(*a))
-		return (0);
-	if (ac == 2)
-		return (0);
-	if (ac > 2 && ac <= 6)
-		ft_sort(a, b, (ac - 1));
-	if (ac > 6)
-		ft_sort_lis(a, b, (ac - 1));
-	return (0);
-}
-
-char	**ft_strcheck(char **av)
-{
-	return (ft_split(av[1], ' '));
-}

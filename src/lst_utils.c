@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push.h"
+#include "../include/push.h"
 
 void	ft_lstdsp(t_list *lst)
 {

@@ -40,6 +40,9 @@ typedef struct s_list
 	struct s_list	*next;
 }t_list;
 
+void	check_long_int(char	*av, char **str, int free);
+int		is_int(char *str);
+long	ft_long_atoi(const char *str);
 t_node	*find_long_chain(int len, t_node *n, t_node *p);
 t_node	*fill_chain(int len, int *v);
 int		find_min_pos(t_list *a);

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push.h"
+#include "../include/push.h"
 
 t_node	*lis(int *v, int len)
 {

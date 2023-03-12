@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push.h"
+#include "../include/push.h"
 
 int	ft_count_args(char **str)
 {
@@ -52,7 +52,6 @@ void	ft_start_1(char **av, t_list *a, t_list	*b)
 	ft_buildstacka(ac, str, &a, &new);
 	ft_sorting(ac, &a, &b);
 	ft_free_mat(str);
-	ft_printlist(a);
 	ft_free_stack(a);
 	ft_free_stack(b);
 	return ;
@@ -73,7 +72,6 @@ void	ft_start_2(int ac, char **av, t_list *a, t_list	*b)
 	ft_checkdouble(ac, av, 0);
 	ft_buildstacka(ac, av, &a, &new);
 	ft_sorting(ac, &a, &b);
-	ft_printlist(a);
 	ft_free_stack(a);
 	ft_free_stack(b);
 	return ;

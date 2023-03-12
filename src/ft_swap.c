@@ -1,55 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_reverse.c                                       :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/10 11:46:48 by mgirardi          #+#    #+#             */
-/*   Updated: 2023/03/10 11:46:50 by mgirardi         ###   ########.fr       */
+/*   Created: 2022/12/06 16:51:12 by mgirardi          #+#    #+#             */
+/*   Updated: 2022/12/06 16:56:47 by mgirardi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push.h"
+#include "../include/push.h"
 
-void	ft_revlst(t_list **lst)
+void	swap(t_list **lst)
 {
-	t_list	*tmp;
-	int		i;
+	t_list	*testa;
+	t_list	*next;
+	t_list	*culo;
 
 	if (!*lst || !(*lst)->next)
 		return ;
-	i = 0;
-	tmp = *lst;
-	while ((*lst)->next)
-	{
-		*lst = (*lst)->next;
-		i++;
-	}
-	(*lst)->next = tmp;
-	while (i > 1)
-	{
-		tmp = tmp->next;
-		i--;
-	}
-	tmp->next = NULL;
+	testa = (*lst)->next;
+	next = *lst;
+	culo = (*lst)->next->next;
+	testa->next = next;
+	next->next = culo;
+	*lst = testa;
 }
 
-void	rra(t_list **a)
+void	sa(t_list **a)
 {
-	ft_revlst(a);
-	write(1, "rra\n", 4);
+	swap(a);
+	write(1, "sa\n", 3);
 }
 
-void	rrb(t_list **b)
+void	sb(t_list **b)
 {
-	ft_revlst(b);
-	write(1, "rrb\n", 4);
+	swap(b);
+	write(1, "sb\n", 3);
 }
 
-void	rrr(t_list **a, t_list **b)
+void	ss(t_list **a, t_list **b)
 {
-	ft_revlst(a);
-	ft_revlst(b);
-	write(1, "rrr\n", 4);
+	sa(a);
+	sb(b);
+	write(1, "ss\n", 3);
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push.h"
+#include "../include/push.h"
 
 void	ft_butta_su(t_list **a, int i)
 {

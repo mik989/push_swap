@@ -2,9 +2,36 @@ NAME		=	push_swap
 
 NAME_BONUS	=	checker
 
-SRC			=	push_swap.c ft_push.c ft_reverse.c ft_rotate.c ft_swap.c lst_utils.c ft_lis.c sortlittle.c utils.c movement.c utils_2.c ft_ultimate_movement.c check_error.c array_lis.c movement_utils.c movement_utils_2.c ft_pos.c
+SRC			=	src/push_swap.c \
+				src/check_error.c \
+				src/ft_push.c \
+				src/ft_reverse.c \
+				src/ft_rotate.c \
+				src/ft_swap.c \
+				src/lst_utils.c \
+				src/ft_lis.c \
+				src/sortlittle.c \
+				src/utils.c \
+				src/movement.c \
+				src/utils_2.c \
+				src/ft_ultimate_movement.c \
+				src/array_lis.c \
+				src/movement_utils.c \
+				src/movement_utils_2.c \
+				src/ft_pos.c \
+				src/ft_long_atoi.c \
+				src_bonus/utils_bonus.c
 
-SRC_BONUS	=	checker.c
+SRC_BONUS	=	src_bonus/checker.c \
+				src_bonus/check_error_bonus.c \
+				src_bonus/ft_long_atoi_bonus.c \
+				src_bonus/ft_push_bonus.c \
+				src_bonus/ft_reverse_bonus.c \
+				src_bonus/ft_rotate_bonus.c \
+				src_bonus/ft_swap_bonus.c \
+				src_bonus/lst_utils_bonus.c \
+				src_bonus/get_next_line_bonus.c \
+				src_bonus/utils_bonus.c
 
 LIBFT		=	libft/libft.a
 

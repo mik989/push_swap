@@ -1,30 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ultimate_movement.c                             :+:      :+:    :+:   */
+/*   ft_rotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/10 11:45:43 by mgirardi          #+#    #+#             */
-/*   Updated: 2023/03/10 11:45:44 by mgirardi         ###   ########.fr       */
+/*   Created: 2023/03/10 11:44:26 by mgirardi          #+#    #+#             */
+/*   Updated: 2023/03/10 11:44:29 by mgirardi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push.h"
+#include "../include/push_bonus.h"
 
-void	ft_ultimate_movement(t_list **a)
+void	ft_rotlst(t_list **lst)
 {
-	int	i;
+	t_list	*tmp;
 
-	i = ft_list_size(*a);
-	if (ft_is_min_pos(a) > i / 2)
-	{
-		while (ft_is_min_pos(a) != 0)
-			rra(a);
-	}
-	else
-	{
-		while (ft_is_min_pos(a) != 0)
-			ra(a);
-	}
+	tmp = *lst;
+	*lst = ft_lstlast(*lst);
+	(*lst)->next = tmp;
+	*lst = tmp->next;
+	tmp->next = NULL;
+}
+
+void	ra(t_list **a)
+{
+	ft_rotlst(a);
+	write(1, "ra\n", 3);
+}
+
+void	rb(t_list **b)
+{
+	ft_rotlst(b);
+	write(1, "rb\n", 3);
+}
+
+void	rr(t_list **a, t_list **b)
+{
+	ft_rotlst(a);
+	ft_rotlst(b);
+	write(1, "rr\n", 3);
 }

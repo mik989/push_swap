@@ -1,43 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rotate.c                                        :+:      :+:    :+:   */
+/*   ft_push.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgirardi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/10 11:44:26 by mgirardi          #+#    #+#             */
-/*   Updated: 2023/03/10 11:44:29 by mgirardi         ###   ########.fr       */
+/*   Created: 2023/03/10 11:45:12 by mgirardi          #+#    #+#             */
+/*   Updated: 2023/03/10 11:45:14 by mgirardi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push.h"
+#include "../include/push.h"
 
-void	ft_rotlst(t_list **lst)
+void	pa(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*tmp;
 
-	tmp = *lst;
-	*lst = ft_lstlast(*lst);
-	(*lst)->next = tmp;
-	*lst = tmp->next;
-	tmp->next = NULL;
+	if (!*stack_b)
+		return ;
+	tmp = *stack_a;
+	*stack_a = *stack_b;
+	*stack_b = (*stack_b)->next;
+	(*stack_a)->next = tmp;
+	write(1, "pa\n", 3);
 }
 
-void	ra(t_list **a)
+void	pb(t_list **stack_a, t_list **stack_b)
 {
-	ft_rotlst(a);
-	write(1, "ra\n", 3);
-}
+	t_list	*tmp;
 
-void	rb(t_list **b)
-{
-	ft_rotlst(b);
-	write(1, "rb\n", 3);
-}
-
-void	rr(t_list **a, t_list **b)
-{
-	ft_rotlst(a);
-	ft_rotlst(b);
-	write(1, "rr\n", 3);
+	if (!*stack_a)
+		return ;
+	tmp = *stack_b;
+	*stack_b = *stack_a;
+	*stack_a = (*stack_a)->next;
+	(*stack_b)->next = tmp;
+	write(1, "pb\n", 3);
 }
