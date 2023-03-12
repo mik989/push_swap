@@ -12,52 +12,59 @@
 
 #include "include/push.h"
 
-t_list	*fill_node(int *v, int *dp, int max_len)
+t_node *fill_chain(int len, int *v)
 {
-	t_list	*result;
-	t_list	*new_node;
-	int		i;
+	int	i;
+	t_node *n;
 
+	n = calloc(sizeof *n, len + 1);
 	i = 0;
-	result = NULL;
-	new_node = (t_list *)malloc(sizeof(t_list));
-	if (!new_node)
+	while (i < len)
 	{
-		while (result)
-		{
-			new_node = result->next;
-			free(result);
-			result = new_node;
-		}
-		free(dp);
-		return (NULL);
+		n[i].val = v[i];
+		i++;
 	}
-	new_node->val = v[i];
-	new_node->next = result;
-	result = new_node;
-	max_len--;
-	return (result);
+	return (n);
 }
 
-t_list	*lis(int *v, int len)
+t_node	*find_long_chain(int len, t_node *n, t_node *p)
 {
-	int		*dp;
-	t_list	*result;
-	int		i;
-	int		max_len;
+	int	i;
 
-	dp = fill_array(len);
-	dp = refill_array(v, dp, len);
-	max_len = ft_max_len(dp, len);
-	i = len - 1;
-	while (i >= 0 && max_len > 0)
+	i = 0;
+	while (i < len)
 	{
-		if (dp[i] == max_len)
-			result = fill_node(v, dp, max_len);
-		i--;
+		if (n[i].len > p->len) 
+			p = n + i;
+		i++;
 	}
-	free(dp);
-	return (result);
+	return (p);
+}
+
+t_node *lis(int *v, int len)
+{
+	int i;
+	t_node *p;
+	t_node *n;
+	
+	n = fill_chain(len, v);
+	i = len; 
+	while (i--)
+	{
+		p = n + i;
+		while (p++ < n + len)
+		{
+			if (p->val > n[i].val && p->len >= n[i].len)
+			{
+				n[i].next = p;
+				n[i].len = p->len + 1;
+			}
+		}
+	}
+	i = 0;
+	p = n;
+	p = find_long_chain(len, n, p);
+	return(n);
 }
 
 int	*ft_cpstacktoarray(t_list **a, int size)
@@ -78,39 +85,37 @@ int	*ft_cpstacktoarray(t_list **a, int size)
 	return (tab_1);
 }
 
-void	ft_fill_stack_b(t_list **a, t_list **b, t_list *tmp, int size)
+void	ft_fill_stack_b(t_list **a, t_list **b, t_node *tmp, int size)
 {
 	int		i;
-	t_list	*tmp_b;
+	t_node	*tmp_b;
 
 	tmp_b = tmp;
 	i = 0;
 	while (i < size)
 	{
-		if (tmp_b->val == (*a)->content && tmp_b->next != NULL)
+		if (tmp->val == (*a)->content && tmp->next != NULL)
 		{
 			ra(a);
-			tmp_b = tmp_b->next;
+			tmp = tmp->next;
 		}
-		else if (tmp_b->val == (*a)->content && tmp_b->next == NULL)
+		else if (tmp->val == (*a)->content && tmp->next == NULL)
 			ra(a);
-		else if (tmp_b->val != (*a)->content)
+		else if (tmp->val != (*a)->content)
 			pb(a, b);
 		i++;
 	}
+	tmp = tmp_b;
 }
 
 void	ft_sort_lis(t_list **a, t_list **b, int size)
 {
 	int		*tab_1;
-	t_list	*tmp_b;
-	t_list	*tmp_c;
+	t_node	*tmp_b;
 
 	tab_1 = ft_cpstacktoarray(a, size);
 	tmp_b = lis(tab_1, size);
-	tmp_c = tmp_b;
 	ft_fill_stack_b(a, b, tmp_b, size);
-	tmp_b = tmp_c;
 	free(tmp_b);
 	free(tab_1);
 	size = ft_list_size(*b);

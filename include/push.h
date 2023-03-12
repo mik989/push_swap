@@ -21,19 +21,27 @@
 # include <string.h>
 # include <unistd.h>
 
+typedef struct node
+{
+	int			val;
+	int			len;
+	struct node	*next;
+}t_node;
+
 typedef struct s_list
 {
 	int				content;
-	int				len;
-	int				val;
 	int				i;
 	int				j;
+	int				val;
 	int				flag;
 	int				prev;
 	int				c;
 	struct s_list	*next;
 }t_list;
 
+t_node	*find_long_chain(int len, t_node *n, t_node *p);
+t_node	*fill_chain(int len, int *v);
 int		find_min_pos(t_list *a);
 int		is_min(t_list *a);
 void	push_min(t_list **a, t_list **b);
@@ -55,8 +63,6 @@ int		ft_max(int mov_a, int mov_b);
 char	**ft_strcheck(char **av);
 void	ft_init_flag(t_list *op);
 void	free_list(t_list *head);
-int		*fill_array(int len);
-int		*refill_array(int *v, int *dp, int len);
 int		ft_max_len(int *dp, int len);
 int		ft_lstsize(t_list *lst);
 int		ft_sorting(int ac, t_list **a, t_list **b);

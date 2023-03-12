@@ -12,53 +12,27 @@
 
 #include "include/push.h"
 
-int	*fill_array(int len)
+t_list	*lis_old(int *v, int len)
 {
-	int		*dp;
+	t_list	*start;
+	t_list	*tmp;
+	t_list	*next;
 	int		i;
 
+	start = NULL;
+	tmp = NULL;
+	next = NULL;
 	i = 0;
-	dp = (int *)malloc(sizeof(int) * len);
-	if (!dp)
-		return (NULL);
-	while (i < len)
-		dp[i++] = 1;
-	return (dp);
-}
-
-int	*refill_array(int *v, int *dp, int len)
-{
-	int	i;
-	int	j;
-
-	j = 0;
-	i = 1;
-	while (i < len)
+	while(len--)
 	{
-		j = 0;
-		while (j < i)
-		{
-			if (v[j] < v[i] && dp[j] + 1 > dp[i])
-				dp[i] = dp[j] + 1;
-			j++;
-		}
-		i++;
+		next = (t_list *)malloc(sizeof(t_list));
+		next->val = v[i++];
+		next->next = NULL;
+		if (start == NULL)
+			start = next;
+		if (tmp != NULL)
+			tmp->next = next;
+		tmp = next;
 	}
-	return (dp);
-}
-
-int	ft_max_len(int *dp, int len)
-{
-	int	i;
-	int	max_len;
-
-	max_len = 0;
-	i = 0;
-	while (i < len)
-	{
-		if (dp[i] > max_len)
-			max_len = dp[i];
-		i++;
-	}
-	return (max_len);
+	return (start);
 }

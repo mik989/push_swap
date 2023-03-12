@@ -18,15 +18,15 @@ void	ft_checkisnumber(char *av, char **str, int free)
 	int	flag;
 	int	isnum;
 
-	isnum = 0;
+	isnum = 1;
 	flag = 0;
 	i = 0;
 	while (av[i])
 	{
 		if (av[i] == '+' || av[i] == '-')
 			flag += 1;
-		else if (ft_isdigit(av[i]))
-			isnum = ft_isdigit(av[i]);
+		else if (!ft_isdigit(av[i]))
+			isnum *= ft_isdigit(av[i]);
 		i++;
 	}
 	if (flag > 1 || !isnum)
